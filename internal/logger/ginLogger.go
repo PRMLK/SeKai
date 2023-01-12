@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-var Gin = logrus.New()
+var GinLogger = logrus.New()
 var LogEntry *logrus.Entry
 
 /*
@@ -21,9 +21,9 @@ Refer： https://blog.csdn.net/zy_whynot/article/details/120240327 zy_whynot 于
 */
 func init() {
 	// Logger格式
-	Gin.SetFormatter(&easy.Formatter{
+	GinLogger.SetFormatter(&easy.Formatter{
 		TimestampFormat: "2006-01-02 15:04:05",
-		LogFormat:       "[%lvl%] %time% - %msg% \n",
+		LogFormat:       "[GinLogger] %time% Method: %method%   Path: %path%   Status: %status%   SpendTime: %SpendTime%\n",
 	})
 
 	// 日志存放路径
@@ -39,11 +39,11 @@ func init() {
 	}
 
 	// 把产生的日志内容写进日志文件中
-	Gin.Out = io.MultiWriter(src, os.Stdout)
+	GinLogger.Out = io.MultiWriter(src, os.Stdout)
 
 	// 日志分隔：1. 每天产生的日志写在不同的文件；2. 只保留一定时间的日志（例如：一星期）
 	// 设置日志级别
-	Gin.SetLevel(logrus.DebugLevel)
+	GinLogger.SetLevel(logrus.DebugLevel)
 
 	logWriter, _ := rotatelogs.New(
 		// 日志文件名格式
@@ -68,9 +68,9 @@ func init() {
 	// Hook格式
 	Hook := lfshook.NewHook(writeMap, &easy.Formatter{
 		TimestampFormat: "2006-01-02 15:04:05",
-		LogFormat:       "[%lvl%] %time% - %msg%\n",
+		LogFormat:       "[GinLogger] %time% Method: %method%   Path: %path%   Status: %status%   SpendTime: %SpendTime%\n",
 	})
 
-	Gin.AddHook(Hook)
-	LogEntry = logrus.NewEntry(Gin).WithField("service", "yi-shou-backstage")
+	GinLogger.AddHook(Hook)
+	LogEntry = logrus.NewEntry(GinLogger).WithField("service", "yi-shou-backstage")
 }
