@@ -7,10 +7,14 @@ import (
 )
 
 type applicationConfig struct {
-	Version string `toml:"Version"`
-	Server  struct {
-		Port string `toml:"Port"`
-	} `toml:"Server"`
+	Version string `toml:"version"`
+	HTTP    struct {
+		Port int `toml:"port"`
+	} `toml:"http"`
+	Log struct {
+		Dir        string `toml:"dir"`
+		LastLogDir string `toml:"lastLogDir"`
+	} `toml:"log"`
 	Database struct {
 		Type   string `toml:"type"`
 		Sqlite struct {
@@ -19,9 +23,9 @@ type applicationConfig struct {
 		Mysql struct {
 			Server   string `toml:"server"`
 			Port     int    `toml:"port"`
-			Database string `toml:"database"`
 			Username string `toml:"username"`
 			Password string `toml:"password"`
+			Db       string `toml:"db"`
 		} `toml:"mysql"`
 	} `toml:"database"`
 }
