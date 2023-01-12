@@ -1,15 +1,17 @@
 <!doctype html>
 <html>
 <head>
-    [ header ]
+    <title>{{.sekai-pageTitle}}</title>
+    {{template "header.tmpl"}}
     <!-- SeKai ChunkLoader Typical Header Marker -->
 </head>
 <body>
-    [ content ]
+    {{template "mask.tmpl"}}
+    <!-- SeKai ChunkLoader Typical Mask Marker -->
+    {{template "content.tmpl"}}
     <!-- SeKai ChunkLoader Typical Content Marker -->
 
-
-    [ footer ]
+    {{template "footer.tmpl"}}
     <!-- SeKai ChunkLoader Typical Footer Marker -->
 </body>
 </html>
