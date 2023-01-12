@@ -8,9 +8,9 @@ import (
 var logStream *os.File
 
 func InitLogger() {
-	if _, err := os.Stat(config.ApplicationConfig.Log.Dir); err != nil {
-		if err := os.Mkdir("./logs", 0755); err != nil {
-			panic("Create logs dictionary error!")
+	if fileInfo, err := os.Stat(config.ApplicationConfig.Log.Dir); err != nil || !fileInfo.IsDir() {
+		if err := os.Mkdir(config.ApplicationConfig.Log.Dir, 0755); err != nil {
+			panic("Create logs directory error!")
 		}
 	}
 	// 初始化日志文件对象

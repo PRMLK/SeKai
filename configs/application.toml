@@ -8,8 +8,8 @@ dir = "./logs"
 
 
 [database]
-type = "sqlite"
-[database.sqlite]
+type = "sqlite3"
+[database.sqlite3]
 dir = "./database.sql"
 [database.mysql]
 server = "localhost"
