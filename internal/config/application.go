@@ -1,9 +1,10 @@
 package config
 
 import (
+	"os"
+
 	"github.com/pelletier/go-toml/v2"
 	"github.com/sirupsen/logrus"
-	"os"
 )
 
 type applicationConfig struct {
@@ -12,8 +13,7 @@ type applicationConfig struct {
 		Port int `toml:"port"`
 	} `toml:"http"`
 	Log struct {
-		Dir        string `toml:"dir"`
-		LastLogDir string `toml:"lastLogDir"`
+		Dir string `toml:"dir"`
 	} `toml:"log"`
 	Database struct {
 		Type   string `toml:"type"`

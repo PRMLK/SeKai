@@ -2,13 +2,14 @@ package logger
 
 import (
 	"SeKai/internal/config"
+	"io"
+	"os"
+	"time"
+
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 	"github.com/rifflock/lfshook"
 	"github.com/sirupsen/logrus"
 	easy "github.com/t-tomalak/logrus-easy-formatter"
-	"io"
-	"os"
-	"time"
 )
 
 var ServerLogger = logrus.New()
@@ -36,13 +37,13 @@ func initServerLogger() {
 
 	logWriter, _ := rotatelogs.New(
 		// 日志文件名格式
-		config.ApplicationConfig.Log.Dir+"%Y%m%d.log",
+		config.ApplicationConfig.Log.Dir+"/log%Y%m%d.log",
 		// 最多保留7天之内的日志
 		rotatelogs.WithMaxAge(7*24*time.Hour),
 		// 一天保存一个日志文件
 		rotatelogs.WithRotationTime(24*time.Hour),
 		// 为最新日志建立软连接
-		rotatelogs.WithLinkName(config.ApplicationConfig.Log.LastLogDir),
+		rotatelogs.WithLinkName(config.ApplicationConfig.Log.Dir+"/latest.log"),
 	)
 
 	// 使用logWriter写日志

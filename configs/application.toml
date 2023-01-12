@@ -4,8 +4,7 @@ version = "0.0.1"
 port = 12070
 
 [log]
-dir = "./logs/log"
-lastLogDir = "./logs/latest.log"
+dir = "./logs"
 
 
 [database]
