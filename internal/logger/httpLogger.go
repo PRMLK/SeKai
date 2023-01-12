@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-var GinLogger = logrus.New()
+var HTTPLogger = logrus.New()
 var LogEntry *logrus.Entry
 
 /*
@@ -19,19 +19,19 @@ var LogEntry *logrus.Entry
 
 Refer： https://blog.csdn.net/zy_whynot/article/details/120240327 zy_whynot 于 2021-09-11 17:16:11 发布
 */
-func initGinLogger() {
+func initHTTPLogger() {
 	// Logger格式
-	GinLogger.SetFormatter(&easy.Formatter{
+	HTTPLogger.SetFormatter(&easy.Formatter{
 		TimestampFormat: "2006-01-02 15:04:05",
-		LogFormat:       "[GinLogger] %time% Method: %method%   Path: %path%   Status: %status%   SpendTime: %SpendTime%\n",
+		LogFormat:       "[HTTPLogger] %time% Method: %method%   Path: %path%   Status: %status%   SpendTime: %SpendTime%\n",
 	})
 
 	// 把产生的日志内容写进日志文件中
-	GinLogger.Out = io.MultiWriter(logStream, os.Stdout)
+	HTTPLogger.Out = io.MultiWriter(logStream, os.Stdout)
 
 	// 日志分隔：1. 每天产生的日志写在不同的文件；2. 只保留一定时间的日志（例如：一星期）
 	// 设置日志级别
-	GinLogger.SetLevel(logrus.DebugLevel)
+	HTTPLogger.SetLevel(logrus.DebugLevel)
 
 	logWriter, _ := rotatelogs.New(
 		// 日志文件名格式
@@ -56,9 +56,9 @@ func initGinLogger() {
 	// Hook格式
 	Hook := lfshook.NewHook(writeMap, &easy.Formatter{
 		TimestampFormat: "2006-01-02 15:04:05",
-		LogFormat:       "[GinLogger] %time% Method: %method%   Path: %path%   Status: %status%   SpendTime: %SpendTime%\n",
+		LogFormat:       "[HTTPLogger] %time% Method: %method%   Path: %path%   Status: %status%   SpendTime: %SpendTime%\n",
 	})
 
-	GinLogger.AddHook(Hook)
-	LogEntry = logrus.NewEntry(GinLogger).WithField("service", "ginLogger")
+	HTTPLogger.AddHook(Hook)
+	LogEntry = logrus.NewEntry(HTTPLogger).WithField("service", "HTTPLogger")
 }

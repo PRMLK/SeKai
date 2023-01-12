@@ -32,7 +32,7 @@ func initServerLogger() {
 	// 设置日志级别
 	ServerLogger.SetLevel(logrus.DebugLevel)
 
-	GinLogger.SetLevel(logrus.DebugLevel)
+	HTTPLogger.SetLevel(logrus.DebugLevel)
 
 	logWriter, _ := rotatelogs.New(
 		// 日志文件名格式

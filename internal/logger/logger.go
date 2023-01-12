@@ -14,6 +14,6 @@ func InitLogger() {
 	} else {
 		logStream = tempLogStream
 	}
-	initGinLogger()
+	initHTTPLogger()
 	initServerLogger()
 }
