@@ -1,17 +1,20 @@
+{{ define "chunk" }}
 <!doctype html>
-<html>
+<html lang="cmn-Hans">
 <head>
-    <title>{{.sekai-pageTitle}}</title>
-    {{template "header.tmpl"}}
+    <title>{{.sekaiPageTitle}}</title>
+    {{template "header"}}
     <!-- SeKai ChunkLoader Typical Header Marker -->
 </head>
 <body>
-    {{template "mask.tmpl"}}
+    {{template "mask"}}
     <!-- SeKai ChunkLoader Typical Mask Marker -->
-    {{template "content.tmpl"}}
+
+    {{template "content"}}
     <!-- SeKai ChunkLoader Typical Content Marker -->
 
-    {{template "footer.tmpl"}}
+    {{template "footer"}}
     <!-- SeKai ChunkLoader Typical Footer Marker -->
 </body>
 </html>
+{{ end }}
