@@ -6,11 +6,12 @@ port = 12070
 [log]
 dir = "./logs"
 
-
 [database]
 type = "sqlite3"
+
 [database.sqlite3]
 dir = "./database.sql"
+
 [database.mysql]
 server = "localhost"
 port = 3306

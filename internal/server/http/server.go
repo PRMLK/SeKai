@@ -4,6 +4,7 @@ import (
 	"SeKai/internal/chunkLoader"
 	"SeKai/internal/config"
 	"SeKai/internal/controller"
+	"SeKai/internal/logger"
 	"SeKai/internal/middleware"
 	"github.com/gin-gonic/gin"
 	"strconv"
@@ -17,8 +18,8 @@ func StartHTTP() {
 	chunkLoader.InitLoader(router)
 	// 加载控制器
 	controller.InitController(router)
-	err := router.Run(":" + strconv.Itoa(config.ApplicationConfig.HTTP.Port))
-	if err != nil {
-		return
+
+	if err := router.Run(":" + strconv.Itoa(config.ApplicationConfig.HTTP.Port)); err != nil {
+		logger.ServerLogger.Panic(err)
 	}
 }
