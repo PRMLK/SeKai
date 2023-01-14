@@ -7,7 +7,7 @@ import (
 
 func homeController(router *gin.Engine) {
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "chunk", gin.H{
+		c.HTML(http.StatusOK, "chunk.tmpl", gin.H{
 			"sekaiPageTitle": "Main website",
 		})
 	})
