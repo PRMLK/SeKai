@@ -1,5 +1,19 @@
 {{ define "content" }}
-<h1>
-    Home Page
-</h1>
+<h1>Home Page</h1>
+<table class="sekai-logintable">
+    <tr>
+        <td><label for="username">username: </label></td>
+        <td>
+            <input class="sekai-input sekai-auth-username" id="username" type="text" placeholder="username">
+        </td>
+    </tr>
+    <tr>
+        <td><label for="password">password: </label></td>
+        <td>
+            <input class="sekai-input sekai-auth-password" id="password" type="password" placeholder="password">
+        </td>
+    </tr>
+</table>
+<button id="sekai-btn sekai-btn-submit" class="submit">login</button>
+
 {{ end }}

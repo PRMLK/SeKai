@@ -1,5 +1,27 @@
-.sekai-sitefooter{
-    width: 100%;
-    min-width: 100%;
-    alignment: center;
+* {
+  font-family: "Noto Sans SC", sans-serif;
+  color: #1D1D1F;
 }
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #55CFD4;
+  /* Primary 2 */
+  transition: all 0.2s ease-in-out;
+}
+a:hover {
+  color: #07BBC3;
+}
+
+.sekai-sitefooter {
+  clear: both;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  bottom: 1em;
+  width: 100%;
+}
+
+/*# sourceMappingURL=styles.css.map */

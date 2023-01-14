@@ -1,0 +1,23 @@
+@import "fonts";
+@import "colorpalette";
+
+a{
+    cursor: pointer;
+    text-decoration: none;
+    color: $color-info-1;
+    /* Primary 2 */
+    transition: all 0.2s ease-in-out;
+    &:hover{
+        color: $color-info-0;
+    }
+}
+
+.sekai-sitefooter{
+    clear: both;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+    bottom: 1em;
+    width: 100%;
+}
