@@ -14,6 +14,24 @@
         </td>
     </tr>
 </table>
-<button id="submit" class="sekai-btn sekai-btn-submit">login</button>
+<button id="submit" class="sekai-btn sekai-btn-submit" onclick="submit();">login</button>
 
+<script>
+    function submit(){
+        var inp_usr = $("#username");
+        var inp_pwd = $("#password");
+        if ((inp_usr.val().trim()=="")||(inp_pwd.val().trim()=="")){
+            alert("USERNAME or PASSWORD input field remain empty.");
+            return false;
+        }
+        else {
+            $.post("http://localhost:12070/v1/user/login",{
+                Username : inp_usr,
+                Password : inp_pwd
+            })
+            alert("POSTED.");
+        }
+    }
+
+</script>
 {{ end }}
