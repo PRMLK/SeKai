@@ -7,6 +7,9 @@
 
 // As hex codes */
 $color-black: #1D1D1F;
+$color-grey: #E3E3E3;
+$color-grey-hover: #ABABAB;
+$color-grey-focus: #7E7E7E;
 
 $color-success-0: #05CD8B;	// Main Success color */
 $color-success-1: #57DBB0;
@@ -35,7 +38,12 @@ $color-danger-4: #C34200;
 
 
 // As RGBa codes */
+$rgba-blank-transparent: rgba(0,0,0,0);
 $rgba-black: rgba(29,29,31,1);
+$rgba-grey-1: rgba(240,240,240,1);
+$rgba-grey-2: rgba(227,227,227,1);
+$rgba-grey-0: rgba(171,171,171,1);
+$rgba-grey-3: rgba(126,126,126,1);
 
 $rgba-success-0: rgba(  5,205,139,1);	// Main Success color */
 $rgba-success-1: rgba( 87,219,176,1);
