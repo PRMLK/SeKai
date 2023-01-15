@@ -1,4 +1,24 @@
 {{ define "login" }}
+<!doctype html>
+<html lang="cmn-Hans">
+<head>
+    <title>{{.sekaiPageTitle}}</title>
+    <link rel="preconnect" href="https://fonts.proxy.ustclug.org">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--  Import USTC Font Source  -->
+    <link href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+    <!--  Import Noto Sans Regular 400  -->
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <!--  Import main Stylesheets   -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+    <!--  Import jQuery from Microsoft Ajax Content Delivery Network Assets  -->
+    <style id="style"></style>
+    <!-- SeKai ChunkLoader Typical Header Marker -->
+</head>
+<body>
+<!--{{template "mask" .}}-->
+<!-- SeKai ChunkLoader Typical Mask Marker -->
+
 <table class="sekai-logintable">
     <tr>
         <td><label for="username">username: </label></td>
@@ -16,20 +36,38 @@
 <button id="submit" class="sekai-btn sekai-btn-submit" onclick="submit();">login</button>
 
 <script>
-    function submit(){
+    function submit() {
         let inp_usr = $("#username");
         let inp_pwd = $("#password");
-        if ((inp_usr.val().trim().length===0)||(inp_pwd.val().trim().length===0)){
+        if ((inp_usr.val().trim().length === 0) || (inp_pwd.val().trim().length === 0)) {
             alert("USERNAME or PASSWORD input field remain empty.");
             return false;
-        }
-        else {
-            $.post("http://localhost:12070/v1/user/login",{
-                Username : inp_usr,
-                Password : inp_pwd
-            })
+        } else {
+            $.post("{{.sekaiSiteRoot}}\/v1\/user\/login", {
+                "Username" : inp_usr,
+                "Password" : inp_pwd
+            }, function (response){
+                // alert(response.data.token)
+                // alert(response.msg)
+                // alert("POSTED.");
+            }, "json")
             alert("POSTED.");
         }
     }
 </script>
+<!-- SeKai ChunkLoader Typical Content Marker -->
+
+<!--{{template "footer" .}}-->
+<!-- SeKai ChunkLoader Typical Footer Marker -->
+</body>
+<script>
+    const style = document.getElementById('style');
+    const req = new XMLHttpRequest();
+    req.onloadend = () => {
+        style.innerHTML = req.responseText;
+    };
+    // req.open("GET", "ping.sass");
+    req.send();
+</script>
+</html>
 {{ end }}
