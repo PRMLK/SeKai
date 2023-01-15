@@ -34,7 +34,8 @@
     </tr>
 </table>
 <button id="submit" class="sekai-btn sekai-btn-submit" onclick="submit();">login</button>
-
+<!-- TODO: add register page -->
+<!-- TODO: add user auth page -->
 <script>
     function submit() {
         let inp_usr = $("#username");
@@ -59,6 +60,8 @@
             // alert("POSTED.");
         }
     }
+
+    // TODO: debug cookie funtions
     function setCookie(key, value, expires){
         var oDate = new Date();
         oDate.setDate(oDate.getDate() + expires);

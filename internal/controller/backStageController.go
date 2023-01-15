@@ -10,6 +10,7 @@ func backStageController(router *gin.Engine) {
 		c.HTML(http.StatusOK, "login", gin.H{
 			"sekaiPageTitle": "Home",
 			"sekaiSiteRoot":  "localhost:12070",
+			//	TODO: add global constant "sekaiSiteName"
 		})
 	})
 }
