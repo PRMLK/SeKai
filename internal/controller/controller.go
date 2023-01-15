@@ -8,6 +8,7 @@ import (
 func InitController(router *gin.Engine) {
 	pingController(router)
 	homeController(router)
+	backStageController(router)
 	staticController(router)
 	api.APIController(router)
 }
