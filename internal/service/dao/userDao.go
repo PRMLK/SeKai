@@ -30,6 +30,11 @@ func UserRegister(registerParam *param.RegisterParam) error {
 	} else {
 		hashPassword = tempHashPassword
 	}
+	result := util.Datebase.Where(&model.User{Username: registerParam.Username}).Find(&model.User{})
+	if result.RowsAffected > 0 {
+		logger.ServerLogger.Info("用户名已被注册: " + registerParam.Username)
+		return errors.New("用户名已被注册")
+	}
 	if err := util.Datebase.Create(&model.User{Username: registerParam.Username, Email: registerParam.Email, Password: hashPassword}).Error; err != nil {
 		logger.ServerLogger.Warning("数据库插入错误: " + err.Error())
 		return errors.New("未知错误")
