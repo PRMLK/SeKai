@@ -24,3 +24,7 @@ func Success(ctx *gin.Context, data gin.H, msg string) {
 func Fail(ctx *gin.Context, data gin.H, msg string) {
 	response(ctx, http.StatusOK, 400, data, msg)
 }
+
+func Unauthorized(ctx *gin.Context, data gin.H, msg string) {
+	response(ctx, http.StatusUnauthorized, 400, data, msg)
+}
