@@ -17,9 +17,7 @@ a:hover {
 .sekai-input {
   border: 0;
   background-color: rgb(227, 227, 227);
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 0.5rem;
+  padding: 0.5rem;
   border-radius: 0.5rem;
   transition: all 0.2s ease-in-out;
   outline: none;
@@ -34,9 +32,7 @@ a:hover {
 .sekai-btn {
   border: 0.1rem solid rgb(227, 227, 227);
   background-color: rgb(240, 240, 240);
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  padding-left: 0.3rem;
+  padding: 0.3rem;
   border-radius: 0.5rem;
   min-width: 5rem;
   font-size: 1em;
@@ -47,6 +43,46 @@ a:hover {
 }
 .sekai-btn:active {
   background-color: rgb(171, 171, 171);
+}
+
+.sekai-nav {
+  list-style-type: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 5rem;
+  background-color: rgb(240, 240, 240);
+  overflow: hidden;
+}
+.sekai-nav li {
+  float: left;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 5rem;
+  transition: all 0.2s ease-in-out;
+  background-color: rgba(0, 0, 0, 0);
+}
+.sekai-nav li:hover {
+  background-color: rgb(227, 227, 227);
+}
+.sekai-nav li:active {
+  background-color: rgb(171, 171, 171);
+}
+.sekai-nav .sekai-nav-element-right {
+  float: right;
+}
+.sekai-nav li.sekai-home a {
+  color: #FFAC65 !important;
+}
+.sekai-nav li.sekai-home a:hover {
+  color: #FF7A07 !important;
 }
 
 .sekai-pagetitle {
