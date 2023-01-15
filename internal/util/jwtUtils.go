@@ -24,7 +24,7 @@ func ReleaseToken(userID uint) (string, error) {
 		},
 	}
 
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	token := jwt.NewWithClaims(jwt.SigningMethodHS512, claims)
 	tokenString, err := token.SignedString(jwtKey)
 
 	if err != nil {
