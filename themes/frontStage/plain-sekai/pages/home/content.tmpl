@@ -1,37 +1,4 @@
 {{ define "content" }}
-<h1>Home Page</h1>
-<table class="sekai-logintable">
-    <tr>
-        <td><label for="username">username: </label></td>
-        <td>
-            <input class="sekai-input sekai-auth-username" id="username" type="text" placeholder="username">
-        </td>
-    </tr>
-    <tr>
-        <td><label for="password">password: </label></td>
-        <td>
-            <input class="sekai-input sekai-auth-password" id="password" type="password" placeholder="password">
-        </td>
-    </tr>
-</table>
-<button id="submit" class="sekai-btn sekai-btn-submit" onclick="submit();">login</button>
+<h1 class="sekai-pagetitle">Home Page</h1>
 
-<script>
-    function submit(){
-        var inp_usr = $("#username");
-        var inp_pwd = $("#password");
-        if ((inp_usr.val().trim()=="")||(inp_pwd.val().trim()=="")){
-            alert("USERNAME or PASSWORD input field remain empty.");
-            return false;
-        }
-        else {
-            $.post("http://localhost:12070/v1/user/login",{
-                Username : inp_usr,
-                Password : inp_pwd
-            })
-            alert("POSTED.");
-        }
-    }
-
-</script>
 {{ end }}
