@@ -69,10 +69,10 @@ a:hover {
   transition: all 0.2s ease-in-out;
   background-color: rgba(0, 0, 0, 0);
 }
-.sekai-nav li:hover {
+.sekai-nav li:not(.sekai-nav-element-nohover):hover {
   background-color: rgb(227, 227, 227);
 }
-.sekai-nav li:active {
+.sekai-nav li:not(.sekai-nav-element-nohover):active {
   background-color: rgb(171, 171, 171);
 }
 .sekai-nav .sekai-nav-element-right {

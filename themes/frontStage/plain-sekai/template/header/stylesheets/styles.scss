@@ -79,10 +79,10 @@ a {
     border-radius: 5rem;
     transition: all 0.2s ease-in-out;
     background-color: $rgba-blank-transparent;
-    &:hover {
+    &:not(.sekai-nav-element-nohover):hover {
       background-color: $rgba-grey-2;
     }
-    &:active {
+    &:not(.sekai-nav-element-nohover):active {
       background-color: $rgba-grey-0;
     }
   }
