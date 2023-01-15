@@ -43,16 +43,39 @@
             alert("USERNAME or PASSWORD input field remain empty.");
             return false;
         } else {
-            $.post("{{.sekaiSiteRoot}}\/v1\/user\/login", {
-                "Username" : inp_usr,
-                "Password" : inp_pwd
-            }, function (response){
-                // alert(response.data.token)
-                // alert(response.msg)
-                // alert("POSTED.");
-            }, "json")
-            alert("POSTED.");
+            let postContent = {
+                "Username" : inp_usr.val(),
+                "Password" : inp_pwd.val()
+            }
+            $.post("http://{{.sekaiSiteRoot}}/v1/user/login", JSON.stringify(postContent), function (response){
+                if (response.code===0){
+                    setCookie("sekai_login_token", response.data.token);
+                    alert("Success!");
+                }
+                else if(response.code===400){
+                    alert(response.msg);
+                }
+            }, "json");
+            // alert("POSTED.");
         }
+    }
+    function setCookie(key, value, expires){
+        var oDate = new Date();
+        oDate.setDate(oDate.getDate() + expires);
+        document.cookie = key + '=' + value + ';expires=' + oDate;
+    }
+    function removeCookie(key){
+        setCookie(key,'',-1);
+    }
+    function getCookie(key){
+        var cookieArr = document.cookie.split('; ');
+        for (var i = 0; i < cookieArr.length; i++) {
+            var arr = cookieArr[i].split('=');
+            if (arr[0]===key){
+                return arr[1];
+            }
+        }
+        return false;
     }
 </script>
 <!-- SeKai ChunkLoader Typical Content Marker -->

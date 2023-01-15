@@ -9,7 +9,7 @@ func backStageController(router *gin.Engine) {
 	router.GET("backstage/user/login", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "login", gin.H{
 			"sekaiPageTitle": "Home",
-			"sekaiSiteRoot":  "http://localhost:12070",
+			"sekaiSiteRoot":  "localhost:12070",
 		})
 	})
 }
