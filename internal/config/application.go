@@ -8,18 +8,19 @@ import (
 )
 
 type applicationConfig struct {
-	Version string `toml:"version"`
-	HTTP    struct {
+	Version  string `toml:"version"`
+	Language string `toml:"language"`
+	HTTP     struct {
 		Port int `toml:"port"`
 	} `toml:"http"`
 	Log struct {
 		Dir string `toml:"dir"`
 	} `toml:"log"`
 	Database struct {
-		Type   string `toml:"type"`
-		Sqlite struct {
+		Type    string `toml:"type"`
+		Sqlite3 struct {
 			Dir string `toml:"dir"`
-		} `toml:"sqlite"`
+		} `toml:"sqlite3"`
 		Mysql struct {
 			Server   string `toml:"server"`
 			Port     int    `toml:"port"`

@@ -1,4 +1,5 @@
 version = "0.0.1"
+language = "zh_cn"
 
 [http]
 port = 12070
