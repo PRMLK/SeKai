@@ -53,6 +53,10 @@ a {
     background-color: $rgba-white;
     transition: all 0.2s ease-in-out;
     color: $rgba-grey-0;
+    padding: {
+      left: 0.5vh;
+      right: 0.5vh;
+    }
   }
 }
 

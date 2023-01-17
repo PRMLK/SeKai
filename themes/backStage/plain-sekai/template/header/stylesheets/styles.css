@@ -37,6 +37,8 @@ a:hover {
   background-color: rgb(245, 245, 247);
   transition: all 0.2s ease-in-out;
   color: rgb(171, 171, 171);
+  padding-left: 0.5vh;
+  padding-right: 0.5vh;
 }
 
 .sekai-btn {
