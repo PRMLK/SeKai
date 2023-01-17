@@ -101,7 +101,7 @@ body {
   background-color: rgb(245, 245, 247);
   width: 35vh;
   padding-top: 4vh;
-  padding-bottom: 6vh;
+  padding-bottom: 4vh;
   padding-left: 4vh;
   padding-right: 4vh;
   border-radius: 1rem;
@@ -144,8 +144,8 @@ body {
 }
 
 .sekai-devide {
-  margin-top: -1.5vh;
-  margin-bottom: 1vh;
+  margin-top: 0.5vh;
+  margin-bottom: 2vh;
   display: flex;
   align-items: center;
   font-size: 0.4rem;
@@ -154,7 +154,7 @@ body {
 .sekai-devide::before, .sekai-devide::after {
   content: "";
   flex: 1;
-  height: 1px;
+  height: 0.15rem;
   background: rgb(171, 171, 171);
 }
 .sekai-devide::before {

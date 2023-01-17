@@ -132,7 +132,7 @@ body {
   //height:  55vh;
   padding: {
     top: 4vh;
-    bottom: 6vh;
+    bottom: 4vh;
     left: 4vh;
     right: 4vh;
   };
@@ -189,8 +189,8 @@ body {
 
 .sekai-devide {
   margin: {
-    top: -1.5vh;
-    bottom: 1vh;
+    top: 0.5vh;
+    bottom: 2vh;
   }
   display: flex;
   align-items: center;
@@ -201,7 +201,7 @@ body {
   &::after {
     content: '';
     flex: 1;
-    height: 1px;
+    height: 0.15rem;
     background: $rgba-grey-0;
   }
 
