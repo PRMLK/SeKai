@@ -172,7 +172,7 @@ body {
     @include align-center;
     position: relative;
     margin-top: 2vh;
-    width: 32vh;
+    width: 30vh;
     color: $rgba-black;
     font-weight: 700;
   }
@@ -196,7 +196,7 @@ body {
   }
   display: flex;
   align-items: center;
-  font-size: 0.4rem;
+  font-size: 0.8em;
   color: $rgba-grey-0;
   user-select: none;
 
@@ -210,10 +210,12 @@ body {
 
   &::before {
     margin-right: 0.25rem;
+    margin-left: 2vh;
   }
 
   &::after {
     margin-left: 0.25rem;
+    margin-right: 2vh;
   }
 }
 

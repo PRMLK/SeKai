@@ -141,7 +141,7 @@ body {
   right: 50%;
   position: relative;
   margin-top: 2vh;
-  width: 32vh;
+  width: 30vh;
   color: rgb(29, 29, 31);
   font-weight: 700;
 }
@@ -151,7 +151,7 @@ body {
   margin-bottom: 2vh;
   display: flex;
   align-items: center;
-  font-size: 0.4rem;
+  font-size: 0.8em;
   color: rgb(171, 171, 171);
   user-select: none;
 }
@@ -163,9 +163,11 @@ body {
 }
 .sekai-devide::before {
   margin-right: 0.25rem;
+  margin-left: 2vh;
 }
 .sekai-devide::after {
   margin-left: 0.25rem;
+  margin-right: 2vh;
 }
 
 .noscroll {
