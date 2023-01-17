@@ -53,6 +53,7 @@ a {
     background-color: $rgba-white;
     transition: all 0.2s ease-in-out;
     color: $rgba-grey-0;
+    user-select: none;
     padding: {
       left: 0.5vh;
       right: 0.5vh;
@@ -118,6 +119,7 @@ a {
   position: relative;
   bottom: 1em;
   width: 100%;
+  user-select: none;
 }
 
 // LOGIN
@@ -147,10 +149,7 @@ body {
     text-align: center;
     margin-bottom: 5vh;
     color: $rgba-black;
-  }
-
-  .sekai-input-warp {
-    position: relative;
+    user-select: none;
   }
 
   .sekai-input {
@@ -163,6 +162,9 @@ body {
 
     ::placeholder {
       color: $rgba-grey-0;
+    }
+    &-warp {
+      position: relative;
     }
   }
 
@@ -196,6 +198,7 @@ body {
   align-items: center;
   font-size: 0.4rem;
   color: $rgba-grey-0;
+  user-select: none;
 
   &::before,
   &::after {

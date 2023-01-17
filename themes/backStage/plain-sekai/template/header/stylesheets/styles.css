@@ -37,6 +37,7 @@ a:hover {
   background-color: rgb(245, 245, 247);
   transition: all 0.2s ease-in-out;
   color: rgb(171, 171, 171);
+  user-select: none;
   padding-left: 0.5vh;
   padding-right: 0.5vh;
 }
@@ -91,6 +92,7 @@ a:hover {
   position: relative;
   bottom: 1em;
   width: 100%;
+  user-select: none;
 }
 
 body {
@@ -116,9 +118,7 @@ body {
   text-align: center;
   margin-bottom: 5vh;
   color: rgb(29, 29, 31);
-}
-.sekai-loginform .sekai-input-warp {
-  position: relative;
+  user-select: none;
 }
 .sekai-loginform .sekai-input {
   transform: translate(-50%, -50%);
@@ -131,6 +131,9 @@ body {
 }
 .sekai-loginform .sekai-input ::placeholder {
   color: rgb(171, 171, 171);
+}
+.sekai-loginform .sekai-input-warp {
+  position: relative;
 }
 .sekai-loginform .sekai-btn {
   transform: translate(-50%, -50%);
@@ -150,6 +153,7 @@ body {
   align-items: center;
   font-size: 0.4rem;
   color: rgb(171, 171, 171);
+  user-select: none;
 }
 .sekai-devide::before, .sekai-devide::after {
   content: "";
