@@ -6,9 +6,9 @@ import (
 	"os"
 )
 
-func backStageThemeScan() {
+func ThemeBasicScan(dir string, themeMap map[string]themeConfig) {
 	// 扫描backStage目录
-	backStageRootDir, err := os.ReadDir("./themes/backStage")
+	backStageRootDir, err := os.ReadDir(dir)
 	if err != nil {
 		return
 	}
@@ -29,15 +29,19 @@ func backStageThemeScan() {
 				logger.ServerLogger.Debug()
 				continue
 			} else {
-				if _, exist := ThemeMap[themeConfig.ThemeName]; exist == true {
+				if _, exist := themeMap[themeConfig.ThemeName]; exist == true {
 					// 已经存在同名模板
 					logger.ServerLogger.Debug()
 					continue
 				} else {
 					themeConfig.ThemeDir = dir.Name()
-					ThemeMap[themeConfig.ThemeName] = themeConfig
+					themeMap[themeConfig.ThemeName] = themeConfig
 				}
 			}
 		}
 	}
+}
+
+func SingleThemeScan(themeName string, themeMap map[string]themeConfig) {
+
 }
