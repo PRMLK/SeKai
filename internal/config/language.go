@@ -15,6 +15,7 @@ type languageConfig struct {
 		HTTPServerShutdownMessage string `toml:"httpServerShutdownMessage"`
 		HTTPServerShutdownError   string `toml:"httpServerShutdownError"`
 		HTTPServerExited          string `toml:"httpServerExited"`
+		ChunkTemplateLoadedError  string `toml:"chunkTemplateLoadedError"`
 	} `toml:"serverLogger"`
 }
 

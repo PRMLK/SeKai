@@ -1,11 +1,11 @@
 package http
 
 import (
-	"SeKai/internal/chunkLoader"
 	"SeKai/internal/config"
 	"SeKai/internal/controller"
 	"SeKai/internal/logger"
 	"SeKai/internal/middleware"
+	"SeKai/internal/themeLoader"
 	"context"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -22,7 +22,7 @@ func StartHTTP() {
 	// 加载中间件
 	middleware.LoadMiddleware(router)
 	// 加载themesLoader
-	chunkLoader.InitLoader(router)
+	themeLoader.InitThemeLoader(router)
 	// 加载控制器
 	controller.InitController(router)
 
