@@ -22,7 +22,7 @@ func StartHTTP() {
 	// 加载中间件
 	middleware.LoadMiddleware(router)
 	// 加载themesLoader
-	themeLoader.InitThemeLoader(router)
+	themeLoader.InitThemeLoader()
 	// 加载控制器
 	controller.InitController(router)
 
