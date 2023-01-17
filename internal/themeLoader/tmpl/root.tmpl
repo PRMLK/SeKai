@@ -1,0 +1,19 @@
+{{define "root"}}
+<html lang="cmn-Hans">
+<head>
+    <title>{{.sekaiPageTitle}}</title>
+    {{template "header" .}}
+    <style id="style"></style>
+    <!-- SeKai ChunkLoader Typical Header Marker -->
+</head>
+<body>
+{{template "mask" .}}
+<!-- SeKai ChunkLoader Typical Mask Marker -->
+
+{{template "content" .}}
+<!-- SeKai ChunkLoader Typical Content Marker -->
+
+{{template "footer" .}}
+<!-- SeKai ChunkLoader Typical Footer Marker -->
+</body>
+{{end}}

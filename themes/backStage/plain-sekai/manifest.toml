@@ -8,10 +8,9 @@ mask = "template/mask/mask.tmpl"
 [pages]
 pagesMap = [
     "pages/login/login.toml : /user/login",
-    "pages/user/user.toml : /user/dashboard"
 ]
 
 [static]
 staticMap = [
-    "template/header/style.css : stylesheets/styles.css"
+    "template/header/stylesheets/styles.css : stylesheets/styles.css"
 ]

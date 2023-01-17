@@ -1,24 +1,3 @@
-{{ define "login" }}
-<!doctype html>
-<html lang="cmn-Hans">
-<head>
-    <title>{{.sekaiPageTitle}}</title>
-    <link rel="preconnect" href="https://fonts.proxy.ustclug.org">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!--  Import USTC Font Source  -->
-    <link href="https://fonts.proxy.ustclug.org/css2?family=Noto+Sans+SC&display=swap" rel="stylesheet">
-    <!--  Import Noto Sans Regular 400  -->
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <!--  Import main Stylesheets   -->
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
-    <!--  Import jQuery from Microsoft Ajax Content Delivery Network Assets  -->
-    <style id="style"></style>
-    <!-- SeKai ChunkLoader Typical Header Marker -->
-</head>
-<body>
-<!--{{template "mask" .}}-->
-<!-- SeKai ChunkLoader Typical Mask Marker -->
-
 <form class="sekai-loginform">
     <h1>Sign in to backStage</h1>
     <div class="sekai-input-warp sekai-auth-username">
@@ -127,19 +106,3 @@
         return false;
     }
 </script>
-<!-- SeKai ChunkLoader Typical Content Marker -->
-
-<!--{{template "footer" .}}-->
-<!-- SeKai ChunkLoader Typical Footer Marker -->
-</body>
-<script>
-    const style = document.getElementById('style');
-    const req = new XMLHttpRequest();
-    req.onloadend = () => {
-        style.innerHTML = req.responseText;
-    };
-    // req.open("GET", "ping.sass");
-    req.send();
-</script>
-</html>
-{{ end }}

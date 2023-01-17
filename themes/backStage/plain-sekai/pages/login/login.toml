@@ -1,5 +1,5 @@
 [custom]
 content = "pages/login/content.tmpl"
-header = "template/header/header.tmpl"
-footer = "template/footer/footer.tmpl"
-mask = "template/mask/mask.tmpl"
+header = "pages/login/header/header.toml"
+# footer = "default"
+mask = "default"

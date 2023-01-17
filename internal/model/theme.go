@@ -4,20 +4,30 @@ type Theme struct {
 	ThemeName      string
 	ThemeUrl       string
 	Default        Default
-	Pages          []Page
+	Pages          map[string]Page
 	TemplateDetail map[string]string
+	StaticFiles    []StaticFile
 }
 
 type Default struct {
-	headerTemplateName string
-	footerTemplateName string
-	maskTemplateName   string
+	TemplateString     string
+	ControllerURL      string
+	HeaderTemplateName string
+	FooterTemplateName string
+	MaskTemplateName   string
 }
 
 type Page struct {
-	templateString     string
-	controllerURL      string
-	headerTemplateName string
-	footerTemplateName string
-	maskTemplateName   string
+	TomlDir             string
+	ControllerURL       string
+	HeaderTemplateName  string
+	ContentTemplateName string
+	FooterTemplateName  string
+	MaskTemplateName    string
+	CompileString       []byte
+}
+
+type StaticFile struct {
+	FileDir       string
+	ControllerURL string
 }

@@ -31,11 +31,12 @@ type applicationConfig struct {
 		} `toml:"mysql"`
 	} `toml:"database"`
 	SiteConfig struct {
-		SiteURL         string `toml:"siteUrl" default:"http://localhost:12070"`
-		SiteHome        string `toml:"siteHome" default:"http://localhost:12070"`
-		SiteName        string `toml:"siteName" default:"Sekai"`
-		SiteDescription string `toml:"siteDescription" default:"powered by Golang"`
-		SiteTheme       string `toml:"siteTheme" default:"plain-sekai"`
+		SiteURL             string `toml:"siteUrl" default:"http://localhost:12070"`
+		SiteHome            string `toml:"siteHome" default:"http://localhost:12070"`
+		SiteName            string `toml:"siteName" default:"Sekai"`
+		SiteDescription     string `toml:"siteDescription" default:"powered by Golang"`
+		SiteBackStageTheme  string `toml:"siteBackStageTheme" default:"Plain-SeKai"`
+		SiteFrontStageTheme string `toml:"siteFrontStageTheme" default:"Plain-SeKai"`
 	} `toml:"siteConfig"`
 }
 

@@ -18,9 +18,10 @@ type themeConfig struct {
 
 type PageConfig struct {
 	Custom struct {
-		Content string `toml:"content"`
-		Header  string `toml:"header"`
-		Footer  string `toml:"footer"`
-		Mask    string `toml:"mask"`
+		Content   string   `toml:"content"`
+		Header    string   `toml:"header"`
+		Footer    string   `toml:"footer"`
+		Mask      string   `toml:"mask"`
+		Extension []string `toml:"extension"`
 	} `toml:"custom"`
 }

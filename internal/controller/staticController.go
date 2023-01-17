@@ -1,8 +1,13 @@
 package controller
 
-import "github.com/gin-gonic/gin"
+import (
+	"SeKai/internal/themeLoader"
+	"github.com/gin-gonic/gin"
+)
 
 func staticController(router *gin.Engine) {
-	router.StaticFile("/stylesheets/styles.css", "./themes/frontStage/plain-sekai/template/header/stylesheets/styles.css")
-	router.StaticFile("/backstage/user/stylesheets/styles.css", "./themes/backStage/plain-sekai/template/header/stylesheets/styles.css")
+	for _, staticFile := range themeLoader.BackStageTheme.StaticFiles {
+		staticFile.ControllerURL = "/" + staticFile.ControllerURL
+		router.StaticFile(staticFile.ControllerURL, staticFile.FileDir)
+	}
 }

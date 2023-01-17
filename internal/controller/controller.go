@@ -6,8 +6,7 @@ import (
 )
 
 func InitController(router *gin.Engine) {
-	homeController(router)
-	backStageController(router)
+	themeController(router)
 	staticController(router)
 	api.APIController(router)
 }
