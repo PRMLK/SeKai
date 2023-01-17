@@ -1,21 +1,28 @@
-version = "0.0.1"
-language = "zh_cn"
+version = '0.0.1'
+language = 'zh_cn'
 
 [http]
 port = 12070
 
 [log]
-dir = "./logs"
+dir = './logs'
 
 [database]
-type = "sqlite3"
+type = 'sqlite3'
 
 [database.sqlite3]
-dir = "./database.sql"
+dir = './sekai.db'
 
 [database.mysql]
-server = "localhost"
+server = 'localhost'
 port = 3306
-username = "sekai"
-password = "7355608"
-db = "sekai"
+username = ''
+password = ''
+db = ''
+
+[siteConfig]
+siteUrl = 'http://localhost:12070'
+siteHome = 'http://localhost:12070'
+siteName = 'Sekai'
+siteDescription = 'powered by Golang'
+siteTheme = 'plain-sekai'
