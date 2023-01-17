@@ -19,25 +19,70 @@
 <!--{{template "mask" .}}-->
 <!-- SeKai ChunkLoader Typical Mask Marker -->
 
-<table class="sekai-logintable">
-    <tr>
-        <td><label for="username">username: </label></td>
-        <td>
-            <input class="sekai-input sekai-auth-username" id="username" type="text" placeholder="username">
-        </td>
-    </tr>
-    <tr>
-        <td><label for="password">password: </label></td>
-        <td>
-            <input class="sekai-input sekai-auth-password" id="password" type="password" placeholder="password">
-        </td>
-    </tr>
-</table>
-<button id="submit" class="sekai-btn sekai-btn-submit" onclick="submit();">login</button>
+<form class="sekai-loginform">
+    <h1>Sign in to backStage</h1>
+    <div class="sekai-input-warp sekai-auth-username">
+        <label for="username" class="sekai-input-label">USERNAME</label>
+        <input class="sekai-input" id="username" type="text" placeholder="">
+    </div>
+    <div class="sekai-input-warp sekai-auth-password">
+        <label for="password" class="sekai-input-label">PASSWORD</label>
+        <input class="sekai-input" id="password" type="password" placeholder="">
+    </div>
+    <input type="button" value="Sign in" id="submit" class="sekai-btn sekai-info" onclick="submitLoginRequest();">
+    <input type="button" value="Forget password" id="forget" class="sekai-btn" onclick="">
+    <div class="sekai-devide">No account?</div>
+    <input type="button" value="Sign up" id="register" class="sekai-btn sekai-success" onclick="">
+</form>
+
 <!-- TODO: add register page -->
 <!-- TODO: add user auth page -->
 <script>
-    function submit() {
+    //     original $rgba-grey-2 rgba(227,227,227,1)
+    //     hover $rgba-grey-3 rgba(126,126,126,1)
+    //     focus $rgba-info-0 rgba(  7,187,195,1)
+    $(".sekai-input-warp").hover(function handlerIn() {
+        let label = $(this).children(".sekai-input-label");
+        if (label.length < 0) {
+            return false;
+        } else {
+            label.css("color", "rgba(126,126,126,1)");
+        }
+    }, function handlerOut() {
+        let label = $(this).children(".sekai-input-label");
+        if (label.length < 0) {
+            console.log(label.attr("focus") === "true");
+            return false;
+        } else {
+            if (label.attr("focus") !== "true") {
+                label.css("color", "rgba(171,171,171,1)");
+            }
+        }
+    });
+    $(".sekai-input").focus(function () {
+        let label = $(this).parent().children(".sekai-input-label");
+        console.log(label.content);
+        if (label.length < 0) {
+            return false;
+        } else {
+            label.css("color", "rgba(  7,187,195,1)");
+            label.attr("focus", true);
+        }
+    });
+    $(".sekai-input").focusout(function () {
+        let label = $(this).parent().children(".sekai-input-label");
+        if (label.length < 0) {
+            return false;
+        } else {
+            label.css("color", "rgba(171,171,171,1)");
+            label.attr("focus", false);
+        }
+    });
+    $.onload(function () {
+        $("html").addClass("noscroll");
+    });
+
+    function submitLoginRequest() {
         let inp_usr = $("#username");
         let inp_pwd = $("#password");
         if ((inp_usr.val().trim().length === 0) || (inp_pwd.val().trim().length === 0)) {
@@ -45,15 +90,14 @@
             return false;
         } else {
             let postContent = {
-                "Username" : inp_usr.val(),
-                "Password" : inp_pwd.val()
+                "Username": inp_usr.val(),
+                "Password": inp_pwd.val()
             }
-            $.post("http://{{.sekaiSiteRoot}}/v1/user/login", JSON.stringify(postContent), function (response){
-                if (response.code===0){
+            $.post("http://{{.sekaiSiteRoot}}/v1/user/login", JSON.stringify(postContent), function (response) {
+                if (response.code === 0) {
                     setCookie("sekai_login_token", response.data.token);
                     alert("Success!");
-                }
-                else if(response.code===400){
+                } else if (response.code === 400) {
                     alert(response.msg);
                 }
             }, "json");
@@ -62,19 +106,21 @@
     }
 
     // TODO: debug cookie funtions
-    function setCookie(key, value, expires){
+    function setCookie(key, value, expires) {
         var oDate = new Date();
         oDate.setDate(oDate.getDate() + expires);
         document.cookie = key + '=' + value + ';expires=' + oDate;
     }
-    function removeCookie(key){
-        setCookie(key,'',-1);
+
+    function removeCookie(key) {
+        setCookie(key, '', -1);
     }
-    function getCookie(key){
+
+    function getCookie(key) {
         var cookieArr = document.cookie.split('; ');
         for (var i = 0; i < cookieArr.length; i++) {
             var arr = cookieArr[i].split('=');
-            if (arr[0]===key){
+            if (arr[0] === key) {
                 return arr[1];
             }
         }
