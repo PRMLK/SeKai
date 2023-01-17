@@ -9,7 +9,7 @@ import (
 func main() {
 	config.InitConfig()
 	logger.InitLogger()
-	logger.ServerLogger.Info("Load config and logger successful.")
-	logger.ServerLogger.Info("Now starting HTTP server...")
+	logger.ServerLogger.Info(config.LanguageConfig.ServerLogger.LoadConfigMessage)
+	logger.ServerLogger.Info(config.LanguageConfig.ServerLogger.HTTPStartingMessage)
 	http.StartHTTP()
 }

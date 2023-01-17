@@ -1,11 +1,11 @@
 package http
 
 import (
-	"SeKai/internal/chunkLoader"
 	"SeKai/internal/config"
 	"SeKai/internal/controller"
 	"SeKai/internal/logger"
 	"SeKai/internal/middleware"
+	"SeKai/internal/themeLoader"
 	"context"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -22,7 +22,7 @@ func StartHTTP() {
 	// 加载中间件
 	middleware.LoadMiddleware(router)
 	// 加载themesLoader
-	chunkLoader.InitLoader(router)
+	themeLoader.InitThemeLoader(router)
 	// 加载控制器
 	controller.InitController(router)
 
@@ -33,19 +33,19 @@ func StartHTTP() {
 
 	go func() {
 		if err := srv.ListenAndServe(); err != nil {
-			logger.ServerLogger.Panic("HTTP服务器开启失败：" + err.Error())
+			logger.ServerLogger.Panic(config.LanguageConfig.ServerLogger.HTTPStartingError + ": " + err.Error())
 		}
 	}()
 
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
-	logger.ServerLogger.Info("Shutdown Server ...")
+	logger.ServerLogger.Info(config.LanguageConfig.ServerLogger.HTTPServerShutdownMessage)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal("Server Shutdown:", err)
+		log.Fatal(config.LanguageConfig.ServerLogger.HTTPServerShutdownError+": ", err)
 	}
-	log.Println("Server exiting")
+	log.Println(config.LanguageConfig.ServerLogger.HTTPServerExited)
 }

@@ -9,5 +9,5 @@ import (
 	Refer: https://stackoverflow.com/questions/66285635/how-do-you-use-go-1-16-embed-features-in-subfolders-packages
 */
 
-//go:embed internal/chunkLoader/tmpl/*
+//go:embed internal/themeLoader/tmpl/*
 var InlineTmpl embed.FS

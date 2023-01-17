@@ -1,0 +1,10 @@
+language="zh_cn"
+
+[serverLogger]
+loadConfigMessage = "加载配置文件与记录器成功"
+httpStartingMessage = "现在启动HTTP服务器..."
+httpStartingError = "HTTP服务器开启失败"
+httpServerShutdownMessage = "服务器关闭中..."
+httpServerShutdownError = "服务器关闭失败"
+httpServerExited = "服务器已关闭"
+chunkTemplateLoadedError = "chunk.tmpl 加载失败"

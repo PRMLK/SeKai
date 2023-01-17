@@ -1,6 +1,7 @@
 package config
 
 import (
+	"github.com/mcuadros/go-defaults"
 	"os"
 
 	"github.com/pelletier/go-toml/v2"
@@ -8,38 +9,60 @@ import (
 )
 
 type applicationConfig struct {
-	Version string `toml:"version"`
-	HTTP    struct {
-		Port int `toml:"port"`
+	Version  string `toml:"version" default:"0.0.1"`
+	Language string `toml:"language" default:"zh_cn"`
+	HTTP     struct {
+		Port int `toml:"port" default:"12070"`
 	} `toml:"http"`
 	Log struct {
-		Dir string `toml:"dir"`
+		Dir string `toml:"dir" default:"./logs"`
 	} `toml:"log"`
 	Database struct {
-		Type   string `toml:"type"`
-		Sqlite struct {
-			Dir string `toml:"dir"`
-		} `toml:"sqlite"`
+		Type    string `toml:"type" default:"sqlite3"`
+		Sqlite3 struct {
+			Dir string `toml:"dir" default:"./sekai.db"`
+		} `toml:"sqlite3"`
 		Mysql struct {
-			Server   string `toml:"server"`
-			Port     int    `toml:"port"`
+			Server   string `toml:"server" default:"localhost"`
+			Port     int    `toml:"port" default:"3306"`
 			Username string `toml:"username"`
 			Password string `toml:"password"`
 			Db       string `toml:"db"`
 		} `toml:"mysql"`
 	} `toml:"database"`
+	SiteConfig struct {
+		SiteURL         string `toml:"siteUrl" default:"http://localhost:12070"`
+		SiteHome        string `toml:"siteHome" default:"http://localhost:12070"`
+		SiteName        string `toml:"siteName" default:"Sekai"`
+		SiteDescription string `toml:"siteDescription" default:"powered by Golang"`
+		SiteTheme       string `toml:"siteTheme" default:"plain-sekai"`
+	} `toml:"siteConfig"`
 }
 
-var ApplicationConfig applicationConfig
+var ApplicationConfig *applicationConfig
 
 func initApplicationConfig() {
-	var data []byte
-	if tempData, err := os.ReadFile("./configs/application.toml"); err != nil {
-		logrus.Panic(err)
+	ApplicationConfig = new(applicationConfig)
+	// 读取application.toml
+	if data, err := os.ReadFile("./configs/application.toml"); err != nil {
+		// 读取错误，尝试写入defaultConfig
+		defaults.SetDefaults(ApplicationConfig)
+		if tomlData, err := toml.Marshal(ApplicationConfig); err != nil {
+			// tomlMarshal错误
+			logrus.Panic("tomlMarshal error: " + err.Error())
+			return
+		} else {
+			// 写入错误
+			err = os.WriteFile("./configs/application.toml", tomlData, 0775)
+			if err != nil {
+				logrus.Panic("application.toml write error: " + err.Error())
+				return
+			}
+		}
 	} else {
-		data = tempData
-	}
-	if err := toml.Unmarshal(data, &ApplicationConfig); err != nil {
-		logrus.Panic(err)
+		// 读取正常
+		if err := toml.Unmarshal(data, ApplicationConfig); err != nil {
+			logrus.Panic(err)
+		}
 	}
 }
