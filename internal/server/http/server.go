@@ -17,7 +17,7 @@ import (
 )
 
 func StartHTTP() {
-	//gin.SetMode(gin.ReleaseMode)
+	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
 	// 加载中间件
 	middleware.LoadMiddleware(router)

@@ -64,7 +64,7 @@ func SingleThemeScan(basicDir string, themeName string, themeMap map[string]them
 		page.ControllerURL = strings.Split(pageTomlString, ":")[1]
 
 		// 加载内置的基础模板
-		tempTemplate = InlineTemplateMap["root"]
+		tempTemplate = inlineTemplateLoader()
 
 		// 加载default模板
 		LoadDefaultPages(basicDir, themeName, themeMap, tempTemplate)

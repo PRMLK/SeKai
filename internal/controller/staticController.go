@@ -10,4 +10,8 @@ func staticController(router *gin.Engine) {
 		staticFile.ControllerURL = "/" + staticFile.ControllerURL
 		router.StaticFile(staticFile.ControllerURL, staticFile.FileDir)
 	}
+	for _, staticFile := range themeLoader.FrontStageTheme.StaticFiles {
+		staticFile.ControllerURL = "/" + staticFile.ControllerURL
+		router.StaticFile(staticFile.ControllerURL, staticFile.FileDir)
+	}
 }
