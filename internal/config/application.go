@@ -31,8 +31,8 @@ type applicationConfig struct {
 		} `toml:"mysql"`
 	} `toml:"database"`
 	SiteConfig struct {
-		SiteURL             string `toml:"siteUrl" default:"http://localhost:12070"`
-		SiteHome            string `toml:"siteHome" default:"http://localhost:12070"`
+		SiteRoot            string `toml:"siteRoot" default:"localhost:12070"`
+		SiteHome            string `toml:"siteHome" default:"localhost:12070"`
 		SiteName            string `toml:"siteName" default:"Sekai"`
 		SiteDescription     string `toml:"siteDescription" default:"powered by Golang"`
 		SiteBackStageTheme  string `toml:"siteBackStageTheme" default:"Plain-SeKai"`

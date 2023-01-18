@@ -5,6 +5,7 @@
 
 body {
   background-image: linear-gradient(120deg, #2DC3CA, #2ED29C);
+  overflow: hidden;
 }
 
 .sekai-loginform {
@@ -76,6 +77,14 @@ body {
 .sekai-devide::after {
   margin-left: 0.25rem;
   margin-right: 2vh;
+}
+
+.sekai-sitefooter {
+  position: absolute;
+  bottom: 1vh;
+}
+.sekai-sitefooter p {
+  color: rgba(245, 245, 247, 0.7);
 }
 
 .noscroll {

@@ -1,6 +1,11 @@
 @import "fonts";
 @import "colorpalette";
 
+body {
+  margin: 0;
+  //background-image: linear-gradient(120deg, #2DC3CA, #2ED29C);
+}
+
 a {
   cursor: pointer;
   text-decoration: none;
@@ -14,33 +19,66 @@ a {
 }
 
 .sekai-input {
-  //border: 0.2rem solid $rgba-blank-transparent;
-  border: 0;
-  background-color: $rgba-grey-2;
+  //border: 0;
+  background-color: $rgba-white;
   padding: 0.5rem;
   border-radius: 0.5rem;
   transition: all 0.2s ease-in-out;
   outline: none;
+  border: 0.15rem solid $rgba-grey-0;
 
   &:hover {
-    //border: 0.2rem solid $rgba-grey-hover;
-    box-shadow: inset 0 0 0.2rem 0.2rem rgba(0, 0, 0, .1);
+    border: 0.15rem solid $rgba-grey-3;
+
+    //+.sekai-input-label {
+    //  color: $rgba-grey-3;
+    //
+    //}
+
+    //box-shadow: inset 0 0 0.2rem 0.2rem rgba(0, 0, 0, .1);
   }
 
   &:focus {
-    //border: 0.2rem solid $rgba-grey-focus;
-    box-shadow: inset 0 0 0.2rem 0.2rem rgba(0, 0, 0, .3);
+    border: 0.15rem solid $rgba-info-0;
+
+    //&~.sekai-input-label {
+    //  color: $rgba-info-0;
+    //}
+
+    //box-shadow: inset 0 0 0.2rem 0.2rem rgba(0, 0, 0, .3);
+  }
+
+  &-label {
+    position: absolute;
+    z-index: 2;
+    left: 3vh;
+    top: -1vh;
+    font-size: 0.5em;
+    background-color: $rgba-white;
+    transition: all 0.2s ease-in-out;
+    color: $rgba-grey-0;
+    user-select: none;
+    padding: {
+      left: 0.5vh;
+      right: 0.5vh;
+    }
   }
 }
 
 .sekai-btn {
-  border: 0.1rem solid $rgba-grey-2;
+  border: 0.15rem solid $rgba-grey-2;
   background-color: $rgba-grey-1;
-  padding: 0.3rem;
+  padding: {
+    top: 0.5em;
+    bottom: 0.5em;
+    left: 1em;
+    right: 1em;
+  }
   border-radius: 0.5rem;
   min-width: 5rem;
-  font-size: 1em;
+  font-size: 0.9em;
   transition: 0.2s;
+  cursor: pointer;
 
   &:hover {
     background-color: $rgba-grey-2;
@@ -48,55 +86,46 @@ a {
 
   &:active {
     background-color: $rgba-grey-0;
+    border: 0.15rem solid $rgba-grey-0;
+  }
+
+  &.sekai-info {
+    color: $rgba-white !important;
+    border: 0.15rem solid $rgba-info-2 !important;
+    background-color: $rgba-info-1 !important;
+
+    &:hover {
+      background-color: $rgba-info-2 !important;
+    }
+
+    &:active {
+      background-color: $rgba-info-0 !important;
+      border: 0.15rem solid $rgba-info-0 !important;
+    }
+  }
+
+  &.sekai-success {
+    color: $rgba-white !important;
+    border: 0.15rem solid $rgba-success-2 !important;
+    background-color: $rgba-success-1 !important;
+
+    &:hover {
+      background-color: $rgba-success-2 !important;
+    }
+
+    &:active {
+      background-color: $rgba-success-0 !important;
+      border: 0.15rem solid $rgba-success-0 !important;
+    }
   }
 }
 
-.sekai-nav {
-  list-style-type: none;
-  margin: {
-    top: 1rem;
-    bottom: 1rem;
-    left: 5rem;
-    right: 5rem;
-  }
-  padding: {
-    top: 0.5rem;
-    bottom: 0.5rem;
-    left: 0.5rem;
-    right: 0.5rem;
-  };
-  border-radius: 5rem;
-  background-color: $rgba-grey-1;
-  overflow: hidden;
-  li {
-    float: left;
-    padding: {
-      top: 0.5rem;
-      bottom: 0.5rem;
-      left: 1rem;
-      right: 1rem;
-    };
-    border-radius: 5rem;
-    transition: all 0.2s ease-in-out;
-    background-color: $rgba-blank-transparent;
-    &:not(.sekai-nav-element-nohover):hover {
-      background-color: $rgba-grey-2;
-    }
-    &:not(.sekai-nav-element-nohover):active {
-      background-color: $rgba-grey-0;
-    }
-  }
 
-  .sekai-nav-element-right {
-    float: right;
-  }
-
-  li.sekai-home a {
-    color: $color-alert-1 !important;
-    &:hover {
-      color: $color-alert-0 !important;
-    }
-  }
+.sekai-site-logo a {
+  font-family: 'Noto Sans Mono', monospace;
+  font-weight: 300;
+  font-size: 2.5em;
+  color: $rgba-black;
 }
 
 .sekai-pagetitle {
@@ -108,7 +137,88 @@ a {
   display: block;
   text-align: center;
   margin: 0 auto;
-  position: relative;
-  bottom: 1em;
+  position: absolute;
+  bottom: 1vh;
   width: 100%;
+  user-select: none;
+
+}
+
+.sekai-nav {
+  background-color: rgba(255, 255, 255, 0.7);
+  user-select: none;
+  //margin: {
+  //  left: 40px;
+  //  right: 40px;
+  //};
+  padding: {
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+  };
+  display: flex;
+  list-style-type: none;
+  flex-wrap: nowrap;
+  flex-direction: row;
+
+  &-element {
+    padding: {
+      left: 20px;
+      right: 20px;
+    }
+
+    a {
+      overflow: hidden;
+      position: relative;
+    }
+
+    a:not(.sekai-btn) {
+      // before实现 圆角下划线
+
+      //padding: {
+      //  top: 0.5em;
+      //  bottom: 0.5em;
+      //  left: 1em;
+      //  right: 1em;
+      //}
+      //border-radius: 0.5rem;
+
+      //&:before {
+      //  position: absolute;
+      //  content: "";
+      //  width: 100%;
+      //  height: 0.15rem;
+      //  //background-color: red;
+      //  bottom: 0;
+      //  left: 0;
+      //  border-radius: 0rem 0rem 1rem 1rem;
+      //  transition: 0.2s;
+      //}
+      //&:hover:before {
+      //  background-color: $rgba-info-0;
+      //}
+
+      //border实现下划线
+      //border-bottom: 0.1rem;
+      //margin-left: 0.1rem;
+      //margin-right: 0.1rem;
+      //transition: 0s;
+      //&:hover {
+      //  border-bottom-color: $rgba-info-0;
+      //  border-bottom-width: 0.15rem;
+      //  border-bottom-style: solid;
+      //}
+    }
+  }
+
+  &-search {
+    cursor: pointer;
+  }
+
+  &-gap {
+    flex: 1;
+  }
+
+  align-items: center;
 }

@@ -21,9 +21,9 @@ password = ''
 db = ''
 
 [siteConfig]
-siteUrl = 'http://localhost:12070'
-siteHome = 'http://localhost:12070'
-siteName = 'Sekai'
+siteRoot = 'localhost:12070'
+siteHome = 'localhost:12070'
+siteName = 'SeKai'
 siteDescription = 'powered by Golang'
 siteBackStageTheme = 'Plain-SeKai'
 siteFrontStageTheme = 'Plain-SeKai'

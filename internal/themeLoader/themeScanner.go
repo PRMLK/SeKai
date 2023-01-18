@@ -72,8 +72,10 @@ func SingleThemeScan(basicDir string, themeName string, themeMap map[string]them
 		LoadDefaultPages(basicDir, themeName, themeMap, tempTemplate)
 
 		err := tempTemplate.ExecuteTemplate(wt, "entrance", map[string]interface{}{
-			"sekaiPageTitle": config.ApplicationConfig.SiteConfig.SiteName,
-			"sekaiSiteRoot":  "localhost:12070",
+			"sekaiSiteRoot":        config.ApplicationConfig.SiteConfig.SiteRoot,
+			"sekaiSiteHome":        config.ApplicationConfig.SiteConfig.SiteHome,
+			"sekaiSiteName":        config.ApplicationConfig.SiteConfig.SiteName,
+			"sekaiSiteDescription": config.ApplicationConfig.SiteConfig.SiteDescription,
 		})
 		if err != nil {
 			logger.ServerLogger.Error("加载 " + entranceTomlString + " 页面失败 : " + err.Error())
