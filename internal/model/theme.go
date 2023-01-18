@@ -4,7 +4,7 @@ type Theme struct {
 	ThemeName      string
 	ThemeUrl       string
 	Default        Default
-	Pages          map[string]Page
+	Entrances      map[string]Entrances
 	TemplateDetail map[string]string
 	StaticFiles    []StaticFile
 }
@@ -17,7 +17,7 @@ type Default struct {
 	MaskTemplateName   string
 }
 
-type Page struct {
+type Entrances struct {
 	TomlDir             string
 	ControllerURL       string
 	HeaderTemplateName  string

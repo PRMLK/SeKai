@@ -2,12 +2,12 @@ package themeLoader
 
 import (
 	"SeKai"
-	"html/template"
 )
 
-func inlineTemplateLoader() *template.Template {
-	var tempTemplate *template.Template
-	tempTemplate = template.New("")
-	_, _ = tempTemplate.ParseFS(SeKai.InlineTmpl, "internal/themeLoader/tmpl/root.tmpl")
-	return tempTemplate
+func inlineTemplateStringLoader() string {
+	file, err := SeKai.InlineTmpl.ReadFile("internal/themeLoader/tmpl/root.tmpl")
+	if err != nil {
+		return ""
+	}
+	return string(file)
 }

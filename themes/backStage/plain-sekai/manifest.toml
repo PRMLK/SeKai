@@ -1,13 +1,13 @@
 themeName = "Plain-SeKai"
 
 [default]
-header = "template/header/header.tmpl"
-footer = "template/footer/footer.tmpl"
-mask = "template/mask/mask.tmpl"
+header = "template/header/header.toml"
+footer = "template/footer/footer.toml"
+mask = "template/mask/mask.toml"
 
-[pages]
-pagesMap = [
-    "pages/login/login.toml : /user/login",
+[Entrance]
+EntrancesMap = [
+    "pages/login/entrance.toml : /user/login",
 ]
 
 [static]

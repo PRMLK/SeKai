@@ -7,18 +7,18 @@ import (
 )
 
 func themeController(router *gin.Engine) {
-	for _, page := range themeLoader.BackStageTheme.Pages {
-		router.GET(page.ControllerURL, func(context *gin.Context) {
-			_, err := context.Writer.Write(page.CompileString)
+	for _, entrance := range themeLoader.BackStageTheme.Entrances {
+		router.GET(entrance.ControllerURL, func(context *gin.Context) {
+			_, err := context.Writer.Write(entrance.CompileString)
 			if err != nil {
 				logger.ServerLogger.Error(err)
 				return
 			}
 		})
 	}
-	for _, page := range themeLoader.FrontStageTheme.Pages {
-		router.GET(page.ControllerURL, func(context *gin.Context) {
-			_, err := context.Writer.Write(page.CompileString)
+	for _, entrance := range themeLoader.FrontStageTheme.Entrances {
+		router.GET(entrance.ControllerURL, func(context *gin.Context) {
+			_, err := context.Writer.Write(entrance.CompileString)
 			if err != nil {
 				logger.ServerLogger.Error(err)
 				return

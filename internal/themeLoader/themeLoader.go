@@ -3,10 +3,8 @@ package themeLoader
 import (
 	"SeKai/internal/config"
 	"SeKai/internal/model"
-	"html/template"
 )
 
-var InlineTemplateMap = make(map[string]*template.Template)
 var backStageThemeMap = make(map[string]themeConfig)
 var frontStageThemeMap = make(map[string]themeConfig)
 

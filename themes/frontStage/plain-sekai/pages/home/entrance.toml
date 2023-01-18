@@ -1,0 +1,5 @@
+[entrance]
+header = "default"
+content = "pages/home/home.toml"
+footer = ""
+mask = ""
