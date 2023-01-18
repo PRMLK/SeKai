@@ -73,7 +73,7 @@ func SingleThemeScan(basicDir string, themeName string, themeMap map[string]them
 
 		err := tempTemplate.ExecuteTemplate(wt, "root", map[string]interface{}{
 			"sekaiPageTitle": "123",
-			"sekaiSiteRoot":  "http://localhost:12070",
+			"sekaiSiteRoot":  "localhost:12070",
 		})
 		if err != nil {
 			logger.ServerLogger.Error("加载 " + pageTomlString + " 页面失败 : " + err.Error())

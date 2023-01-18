@@ -1,0 +1,17 @@
+themeName = "Plain-SeKai"
+
+[default]
+header = "template/header/header.tmpl"
+footer = "template/footer/footer.tmpl"
+mask = "template/mask/mask.tmpl"
+
+[pages]
+pagesMap = [
+    "pages/home/home.toml : /",
+]
+
+[static]
+staticMap = [
+    "template/header/stylesheets/styles.css : stylesheets/styles.css",
+#    "pages/login/header/stylesheets/styles.css : user/stylesheets/styles.css"
+]

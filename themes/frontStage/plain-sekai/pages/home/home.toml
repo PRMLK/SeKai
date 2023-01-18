@@ -1,0 +1,6 @@
+[custom]
+content = "pages/home/content.tmpl"
+header = "default"
+footer = "default"
+mask = "default"
+

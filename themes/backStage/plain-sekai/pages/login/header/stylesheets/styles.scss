@@ -1,0 +1,103 @@
+@import "../../../../template/header/stylesheets/function";
+@import "../../../../template/header/stylesheets/colorpalette";
+@import "../../../../template/header/stylesheets/fonts";
+
+body {
+  background-image: linear-gradient(120deg, $color-info-2, $color-success-2);
+}
+
+.sekai-loginform {
+  background-color: $rgba-white;
+  width: 35vh;
+  //height:  55vh;
+  padding: {
+    top: 4vh;
+    bottom: 4vh;
+    left: 4vh;
+    right: 4vh;
+  };
+  border-radius: 1rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 20px rgba(50, 50, 50, 0.5);
+  h1 {
+    margin-top: 2vh;
+    text-align: center;
+    margin-bottom: 5vh;
+    color: $rgba-black;
+    user-select: none;
+  }
+
+  .sekai-input {
+    @include align-center;
+    position: relative;
+    //display: block;
+    margin-top: 2vh;
+    width: 30vh;
+    color: $rgba-black;
+
+    ::placeholder {
+      color: $rgba-grey-0;
+    }
+    &-warp {
+      position: relative;
+    }
+  }
+
+  .sekai-btn {
+    @include align-center;
+    position: relative;
+    margin-top: 2vh;
+    width: 30vh;
+    color: $rgba-black;
+    font-weight: 700;
+  }
+
+  //.sekai-auth-username::before {
+  //  content: "USERNAME";
+  //  position: absolute;
+  //  z-index: 2;
+  //  left: 3vh;
+  //  top: -1vh;
+  //  font-size: 0.5em;
+  //  background-color: $rgba-white;
+  //  color: $rgba-grey-2;
+  //}
+}
+
+.sekai-devide {
+  margin: {
+    top: 0.5vh;
+    bottom: 2vh;
+  }
+  display: flex;
+  align-items: center;
+  font-size: 0.8em;
+  color: $rgba-grey-0;
+  user-select: none;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 0.15rem;
+    background: $rgba-grey-0;
+  }
+
+  &::before {
+    margin-right: 0.25rem;
+    margin-left: 2vh;
+  }
+
+  &::after {
+    margin-left: 0.25rem;
+    margin-right: 2vh;
+  }
+}
+
+.noscroll {
+  min-height: 100vh;
+  overflow: hidden;
+}

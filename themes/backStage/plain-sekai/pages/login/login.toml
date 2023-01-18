@@ -1,5 +1,6 @@
 [custom]
 content = "pages/login/content.tmpl"
 header = "pages/login/header/header.toml"
-# footer = "default"
+footer = "default"
 mask = "default"
+

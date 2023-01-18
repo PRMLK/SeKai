@@ -17,8 +17,6 @@ func InitThemeLoader() {
 	ThemeBasicScan("./themes/backStage", backStageThemeMap)
 	ThemeBasicScan("./themes/frontStage", frontStageThemeMap)
 
-	inlineTemplateLoader(InlineTemplateMap)
-
 	BackStageTheme = SingleThemeScan(
 		"./themes/backStage",
 		config.ApplicationConfig.SiteConfig.SiteBackStageTheme,

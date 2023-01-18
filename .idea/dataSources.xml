@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="sekai" uuid="e2803f3a-8e32-4051-a71c-fff1fa19e3c5">
+    <data-source source="LOCAL" name="sekai" uuid="c69c7c02-7f1b-41b7-a1ed-e1123401abd1">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\skv\GolandProjects\SeKai\sekai.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:D:\Projects\SeKai\sekai.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>

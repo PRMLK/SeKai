@@ -12,5 +12,6 @@ pagesMap = [
 
 [static]
 staticMap = [
-    "template/header/stylesheets/styles.css : stylesheets/styles.css"
+    "template/header/stylesheets/styles.css : backStage/stylesheets/styles.css",
+    "pages/login/header/stylesheets/styles.css : user/stylesheets/styles.css"
 ]
