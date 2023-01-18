@@ -7,11 +7,11 @@ mask = "template/mask/mask.toml"
 
 [Entrance]
 EntrancesMap = [
-    "pages/login/entrance.toml : /user/login",
+    "pages/login/entrance.toml : /backstage/user/login",
 ]
 
 [static]
 staticMap = [
-    "template/header/stylesheets/styles.css : backStage/stylesheets/styles.css",
-    "pages/login/header/stylesheets/styles.css : user/stylesheets/styles.css"
+    "template/header/stylesheets/styles.css : /backStage/stylesheets/styles.css",
+    "pages/login/header/stylesheets/styles.css : /user/stylesheets/styles.css"
 ]
