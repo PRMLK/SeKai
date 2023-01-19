@@ -21,6 +21,7 @@ type languageConfig struct {
 		ReadFileError             string `toml:"readFileError"`
 		SameThemeExist            string `toml:"sameThemeExist"`
 		InlineFileReadError       string `toml:"inlineFileReadError"`
+		NewPostError              string `toml:"newPostError"`
 	} `toml:"serverLogger"`
 }
 
