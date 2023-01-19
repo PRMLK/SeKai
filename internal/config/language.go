@@ -16,6 +16,11 @@ type languageConfig struct {
 		HTTPServerShutdownError   string `toml:"httpServerShutdownError"`
 		HTTPServerExited          string `toml:"httpServerExited"`
 		ChunkTemplateLoadedError  string `toml:"chunkTemplateLoadedError"`
+		LoadPageError             string `toml:"loadPageError"`
+		TomlUnmarshalError        string `toml:"tomlUnmarshalError"`
+		ReadFileError             string `toml:"readFileError"`
+		SameThemeExist            string `toml:"sameThemeExist"`
+		InlineFileReadError       string `toml:"inlineFileReadError"`
 	} `toml:"serverLogger"`
 }
 

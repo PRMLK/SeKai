@@ -25,19 +25,18 @@ func ThemeBasicScan(basicDir string, themeMap map[string]themeConfig) {
 			var themeConfig themeConfig
 			// 读取该目录下manifest.toml
 			if tempData, err := os.ReadFile(basicDir + "/" + dir.Name() + "/manifest.toml"); err != nil {
-				logger.ServerLogger.Debug()
 				continue
 			} else {
 				data = tempData
 			}
 			// 尝试读取到Config
 			if err := toml.Unmarshal(data, &themeConfig); err != nil {
-				logger.ServerLogger.Debug()
+				logger.ServerLogger.Debug(config.LanguageConfig.ServerLogger.TomlUnmarshalError + ": " + err.Error())
 				continue
 			} else {
 				if _, exist := themeMap[themeConfig.ThemeName]; exist == true {
 					// 已经存在同名模板
-					logger.ServerLogger.Debug()
+					logger.ServerLogger.Debug(config.LanguageConfig.ServerLogger.SameThemeExist + ": " + themeConfig.ThemeName)
 					continue
 				} else {
 					themeConfig.ThemeDir = dir.Name()
@@ -78,7 +77,7 @@ func SingleThemeScan(basicDir string, themeName string, themeMap map[string]them
 			"sekaiSiteDescription": config.ApplicationConfig.SiteConfig.SiteDescription,
 		})
 		if err != nil {
-			logger.ServerLogger.Error("加载 " + entranceTomlString + " 页面失败 : " + err.Error())
+			logger.ServerLogger.Error(config.LanguageConfig.ServerLogger.LoadPageError + " " + entranceTomlString + ": " + err.Error())
 			return model.Theme{}
 		}
 		entrance.CompileString = wt.Bytes()
@@ -97,6 +96,7 @@ func SingleThemeScan(basicDir string, themeName string, themeMap map[string]them
 
 func LoadEntrance(basicDir string, themeName string, themeMap map[string]themeConfig, tempTemplate *template.Template, TomlDir string) {
 	themeDir := themeMap[themeName].ThemeDir
+	nowDir := basicDir + "/" + themeDir + "/" + TomlDir
 
 	// 加载内置的基础模板
 	nowTemplateString := inlineTemplateStringLoader()
@@ -105,8 +105,8 @@ func LoadEntrance(basicDir string, themeName string, themeMap map[string]themeCo
 	var entranceConfig EntranceConfig
 
 	// 读取当前toml
-	if tempData, err := os.ReadFile(basicDir + "/" + themeDir + "/" + TomlDir); err != nil {
-		logger.ServerLogger.Error()
+	if tempData, err := os.ReadFile(nowDir); err != nil {
+		logger.ServerLogger.Error(config.LanguageConfig.ServerLogger.ReadFileError + " " + nowDir + ": " + err.Error())
 		return
 	} else {
 		tomlData = tempData
@@ -114,14 +114,18 @@ func LoadEntrance(basicDir string, themeName string, themeMap map[string]themeCo
 
 	// 解析当前toml
 	if err := toml.Unmarshal(tomlData, &entranceConfig); err != nil {
-		logger.ServerLogger.Error()
+		logger.ServerLogger.Error(config.LanguageConfig.ServerLogger.TomlUnmarshalError + " " + nowDir + ": " + err.Error())
+		return
 	} else {
 		// 加载 head 组件
 		if entranceConfig.Entrance.Header != "" {
 			// 如果是默认的，就不需要改变
 			if entranceConfig.Entrance.Header != "default" {
 				nowTemplateString, _ = util.ReplaceStringByRegex(nowTemplateString, "{{\\s*template\\s*\"header\"\\s*.\\s*}}", "{{ template \""+"root#header"+"\" .}}")
-				LoadPage(basicDir, themeDir, entranceConfig.Entrance.Header, tempTemplate, "header", "root"+"#header")
+				if errorDir, err := LoadPage(basicDir, themeDir, entranceConfig.Entrance.Header, tempTemplate, "header", "root"+"#header"); err != nil {
+					logger.ServerLogger.Error(config.LanguageConfig.ServerLogger.LoadPageError + " " + errorDir + ": " + err.Error())
+					return
+				}
 			}
 		} else {
 			// 清空当前页面所有header标识不加载
@@ -131,7 +135,10 @@ func LoadEntrance(basicDir string, themeName string, themeMap map[string]themeCo
 		// 加载 content 组件
 		if entranceConfig.Entrance.Content != "" {
 			nowTemplateString, _ = util.ReplaceStringByRegex(nowTemplateString, "{{\\s*template\\s*\"content\"\\s*.\\s*}}", "{{ template \""+"root#content"+"\" .}}")
-			LoadPage(basicDir, themeDir, entranceConfig.Entrance.Content, tempTemplate, "content", "root"+"#content")
+			if errorDir, err := LoadPage(basicDir, themeDir, entranceConfig.Entrance.Content, tempTemplate, "content", "root"+"#content"); err != nil {
+				logger.ServerLogger.Error(config.LanguageConfig.ServerLogger.LoadPageError + " " + errorDir + ": " + err.Error())
+				return
+			}
 		} else {
 			logger.ServerLogger.Error("content不能为空")
 		}
@@ -141,7 +148,10 @@ func LoadEntrance(basicDir string, themeName string, themeMap map[string]themeCo
 			// 如果是默认的，就不需要改变
 			if entranceConfig.Entrance.Footer != "default" {
 				nowTemplateString, _ = util.ReplaceStringByRegex(nowTemplateString, "{{\\s*template\\s*\"footer\"\\s*.\\s*}}", "{{ template \""+"root#footer"+"\" .}}")
-				LoadPage(basicDir, themeDir, entranceConfig.Entrance.Footer, tempTemplate, "footer", "root"+"#footer")
+				if errorDir, err := LoadPage(basicDir, themeDir, entranceConfig.Entrance.Footer, tempTemplate, "footer", "root"+"#footer"); err != nil {
+					logger.ServerLogger.Error(config.LanguageConfig.ServerLogger.LoadPageError + " " + errorDir + ": " + err.Error())
+					return
+				}
 			}
 		} else {
 			// 清空当前页面所有header标识不加载
@@ -153,7 +163,10 @@ func LoadEntrance(basicDir string, themeName string, themeMap map[string]themeCo
 			// 如果是默认的，就不需要改变
 			if entranceConfig.Entrance.Mask != "default" {
 				nowTemplateString, _ = util.ReplaceStringByRegex(nowTemplateString, "{{\\s*template\\s*\"mask\"\\s*.\\s*}}", "{{ template \""+"root#mask"+"\" .}}")
-				LoadPage(basicDir, themeDir, entranceConfig.Entrance.Mask, tempTemplate, "mask", "root"+"#mask")
+				if errorDir, err := LoadPage(basicDir, themeDir, entranceConfig.Entrance.Mask, tempTemplate, "mask", "root"+"#mask"); err != nil {
+					logger.ServerLogger.Error(config.LanguageConfig.ServerLogger.LoadPageError + " " + errorDir + ": " + err.Error())
+					return
+				}
 			}
 		} else {
 			// 清空当前页面所有header标识不加载
@@ -168,35 +181,43 @@ func LoadEntrance(basicDir string, themeName string, themeMap map[string]themeCo
 func LoadDefaultPages(basicDir string, themeName string, themeMap map[string]themeConfig, importTemplate *template.Template) {
 	themeDir := themeMap[themeName].ThemeDir
 	// 读取footer
-	LoadPage(basicDir, themeDir, themeMap[themeName].Default.Footer, importTemplate, "footer", "footer")
+	if errorDir, err := LoadPage(basicDir, themeDir, themeMap[themeName].Default.Footer, importTemplate, "footer", "footer"); err != nil {
+		logger.ServerLogger.Error(config.LanguageConfig.ServerLogger.LoadPageError + " " + errorDir + ": " + err.Error())
+		return
+	}
 
 	// 读取header
-	LoadPage(basicDir, themeDir, themeMap[themeName].Default.Header, importTemplate, "header", "header")
+	if errorDir, err := LoadPage(basicDir, themeDir, themeMap[themeName].Default.Header, importTemplate, "header", "header"); err != nil {
+		logger.ServerLogger.Error(config.LanguageConfig.ServerLogger.LoadPageError + " " + errorDir + ": " + err.Error())
+		return
+	}
 
 	// 读取mask
-	LoadPage(basicDir, themeDir, themeMap[themeName].Default.Mask, importTemplate, "mask", "mask")
+	if errorDir, err := LoadPage(basicDir, themeDir, themeMap[themeName].Default.Mask, importTemplate, "mask", "mask"); err != nil {
+		logger.ServerLogger.Error(config.LanguageConfig.ServerLogger.LoadPageError + " " + errorDir + ": " + err.Error())
+		return
+	}
 }
 
-func LoadPage(basicDir string, themeDir string, TomlDir string, template *template.Template, templateType string, templateLink string) {
+func LoadPage(basicDir string, themeDir string, TomlDir string, template *template.Template, templateType string, templateLink string) (string, error) {
 	var tomlData []byte
 	var pageConfig PageConfig
+	var nowDir = basicDir + "/" + themeDir + "/" + TomlDir
 
 	// 读取当前toml
-	if tempData, err := os.ReadFile(basicDir + "/" + themeDir + "/" + TomlDir); err != nil {
-		logger.ServerLogger.Error()
-		return
+	if tempData, err := os.ReadFile(nowDir); err != nil {
+		return nowDir, err
 	} else {
 		tomlData = tempData
 	}
 
 	// 解析当前toml
 	if err := toml.Unmarshal(tomlData, &pageConfig); err != nil {
-		logger.ServerLogger.Error()
+		return nowDir, err
 	} else {
 		// 读取当前页面的content
 		if tempData, err := os.ReadFile(basicDir + "/" + themeDir + "/" + pageConfig.Custom.Content); err != nil {
-			logger.ServerLogger.Error()
-			return
+			return nowDir, err
 		} else {
 			nowData := string(tempData)
 			// 先加载子组件
@@ -204,34 +225,41 @@ func LoadPage(basicDir string, themeDir string, TomlDir string, template *templa
 				// 如果是默认的，就不需要改变
 				if pageConfig.Custom.Header != "default" {
 					nowData, _ = util.ReplaceStringByRegex(nowData, "{{\\s*template\\s*\"header\"\\s*.\\s*}}", "{{ template \""+templateType+"#header"+"\" .}}")
-					LoadPage(basicDir, themeDir, pageConfig.Custom.Header, template, "header", templateType+"#header")
+					if errorDir, err := LoadPage(basicDir, themeDir, pageConfig.Custom.Header, template, "header", templateType+"#header"); err != nil {
+						return errorDir, err
+					}
 				}
 			} else {
-				// 清空当前页面所有header标识不加载
+				// 清空当前页面所有 header 标识不加载
 				nowData, _ = util.ReplaceStringByRegex(nowData, "{{\\s*template\\s*\" "+"header"+" \"\\s*.\\s*}}", "")
 			}
 			if pageConfig.Custom.Footer != "" {
 				if pageConfig.Custom.Footer != "default" {
 					nowData, _ = util.ReplaceStringByRegex(nowData, "{{\\s*template\\s*\"footer\"\\s*.\\s*}}", "{{ template \""+templateType+"#footer"+"\" .}}")
-					LoadPage(basicDir, themeDir, pageConfig.Custom.Footer, template, "footer", templateType+"#footer")
+					if errorDir, err := LoadPage(basicDir, themeDir, pageConfig.Custom.Footer, template, "footer", templateType+"#footer"); err != nil {
+						return errorDir, err
+					}
 				}
 			} else {
-				// 清空当前页面所有footer标识不加载
+				// 清空当前页面所有 footer 标识不加载
 				nowData, _ = util.ReplaceStringByRegex(nowData, "{{\\s*template\\s*\" "+"footer"+" \"\\s*.\\s*}}", "")
 			}
 			if pageConfig.Custom.Mask != "" {
 				if pageConfig.Custom.Mask != "default" {
 					nowData, _ = util.ReplaceStringByRegex(nowData, "{{\\s*template\\s*\"mask\"\\s*.\\s*}}", "{{ template \""+templateType+"#mask"+"\" .}}")
-					LoadPage(basicDir, themeDir, pageConfig.Custom.Mask, template, "mask", templateType+"#mask")
+					if errorDir, err := LoadPage(basicDir, themeDir, pageConfig.Custom.Mask, template, "mask", templateType+"#mask"); err != nil {
+						return errorDir, err
+					}
 				}
 			} else {
-				// 清空当前页面所有mask标识不加载
+				// 清空当前页面所有 mask 标识不加载
 				nowData, _ = util.ReplaceStringByRegex(nowData, "{{\\s*template\\s*\" "+"mask"+" \"\\s*.\\s*}}", "")
 			}
-
 			// 加载自身
 			if template, err = template.New(templateLink).Parse(nowData); err != nil {
+				return nowDir, err
 			}
 		}
 	}
+	return nowDir, nil
 }
