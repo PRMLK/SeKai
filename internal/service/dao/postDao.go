@@ -12,7 +12,7 @@ import (
 func NewPost(newPostParam *param.NewPostParam, userId uint) (uint, error) {
 	post := model.Post{
 		Title:         newPostParam.Title,
-		Auther:        userId,
+		Author:        userId,
 		Content:       newPostParam.Content,
 		PostStatus:    newPostParam.PostStatus,
 		CommentStatus: newPostParam.CommentStatus,

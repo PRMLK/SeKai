@@ -9,7 +9,7 @@ import (
 type Post struct {
 	gorm.Model
 	Title         string
-	Auther        uint
+	Author        uint
 	Content       string
 	PostStatus    string
 	CommentStatus string
