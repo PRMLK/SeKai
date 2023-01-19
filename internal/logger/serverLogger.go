@@ -23,7 +23,7 @@ func initServerLogger() {
 	// Logger格式
 	ServerLogger.SetFormatter(&easy.Formatter{
 		TimestampFormat: "2006-01-02 15:04:05",
-		LogFormat:       "[ServerLogger][%lvl%] %time%   %msg%\n",
+		LogFormat:       "[SeKai Server][%lvl%] %time%   %msg%\n",
 	})
 
 	// 把产生的日志内容写进日志文件中
@@ -58,9 +58,9 @@ func initServerLogger() {
 	// Hook格式
 	Hook := lfshook.NewHook(writerMap, &easy.Formatter{
 		TimestampFormat: "2006-01-02 15:04:05",
-		LogFormat:       "[ServerLogger][%lvl%] %time%   %msg%\n",
+		LogFormat:       "[SeKai Server][%lvl%] %time%   %msg%\n",
 	})
 
 	ServerLogger.AddHook(Hook)
-	LogEntry = logrus.NewEntry(ServerLogger).WithField("service", "serverLogger")
+	LogEntry = logrus.NewEntry(ServerLogger).WithField("service", "SeKaiServer")
 }
