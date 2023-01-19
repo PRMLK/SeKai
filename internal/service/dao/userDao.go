@@ -25,8 +25,8 @@ func UserLogin(loginParam *param.LoginParam) (userID uint, err error) {
 func UserRegister(registerParam *param.RegisterParam) error {
 	var hashPassword string
 	if tempHashPassword, err := bcrypt.PasswordHash(registerParam.Password); err != nil {
-		logger.ServerLogger.Warning("Hash错误: " + err.Error())
-		return errors.New("未知错误")
+		logger.ServerLogger.Debug("Hash错误: " + err.Error())
+		return errors.New("系统错误")
 	} else {
 		hashPassword = tempHashPassword
 	}
@@ -36,8 +36,7 @@ func UserRegister(registerParam *param.RegisterParam) error {
 		return errors.New("用户名已被注册")
 	}
 	if err := util.Datebase.Create(&model.User{Username: registerParam.Username, Email: registerParam.Email, Password: hashPassword}).Error; err != nil {
-		logger.ServerLogger.Warning("数据库插入错误: " + err.Error())
-		return errors.New("未知错误")
+		return errors.New("系统错误")
 	}
 	return nil
 }
