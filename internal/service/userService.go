@@ -4,7 +4,7 @@ import (
 	response "SeKai/internal/controller/api/utils"
 	"SeKai/internal/logger"
 	"SeKai/internal/model/param"
-	"SeKai/internal/service/logic"
+	"SeKai/internal/service/dao"
 	"SeKai/internal/util"
 	"github.com/gin-gonic/gin"
 )
@@ -26,7 +26,7 @@ func LoginService(c *gin.Context) {
 	}
 
 	// 登录逻辑
-	if tempUserID, err := logic.UserLogin(loginParam); err != nil {
+	if tempUserID, err := dao.UserLogin(loginParam); err != nil {
 		response.Fail(c, nil, err.Error())
 		return
 	} else {
@@ -53,7 +53,7 @@ func RegisterService(c *gin.Context) {
 	}
 
 	// 注册逻辑
-	if err := logic.UserRegister(registerParam); err != nil {
+	if err := dao.UserRegister(registerParam); err != nil {
 		response.Fail(c, nil, err.Error())
 		return
 	} else {
