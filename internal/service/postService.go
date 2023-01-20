@@ -66,7 +66,8 @@ func EditPostService(c *gin.Context) {
 		return
 	}
 
-	if err := dao.EditPost(uint(postIdInt), postParam, uint(c.GetInt64("userId"))); err != nil {
+	// 更新
+	if err := dao.UpdatePost(uint(postIdInt), postParam, uint(c.GetInt64("userId"))); err != nil {
 		response.Fail(c, nil, err.Error())
 	} else {
 		response.Success(c, nil, "更新成功")

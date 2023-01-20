@@ -33,7 +33,7 @@ func GetPost(id uint) (post model.Post, err error) {
 	return post, nil
 }
 
-func EditPost(postId uint, postParam *param.PostParam, userId uint) error {
+func UpdatePost(postId uint, postParam *param.PostParam, userId uint) error {
 	if err := util.Datebase.Model(&model.Post{
 		Model: gorm.Model{
 			ID: postId,
