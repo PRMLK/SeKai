@@ -11,7 +11,7 @@ import (
 )
 
 func NewPostService(c *gin.Context) {
-	newPostParam := new(param.NewPostParam)
+	newPostParam := new(param.PostParam)
 	// 参数检查
 	if err := c.ShouldBindJSON(&newPostParam); err != nil {
 		logger.ServerLogger.Info("Bind error: " + err.Error())
@@ -45,5 +45,30 @@ func ShowPostService(c *gin.Context) {
 }
 
 func EditPostService(c *gin.Context) {
+	postIdString, _ := c.Params.Get("id")
+	postParam := new(param.PostParam)
 
+	// 参数检查
+	if err := c.ShouldBindJSON(&postParam); err != nil {
+		logger.ServerLogger.Info("Bind error: " + err.Error())
+		response.Fail(c, nil, "传递参数有误")
+		return
+	}
+	postIdInt, err := strconv.ParseInt(postIdString, 10, 64)
+	if err != nil {
+		response.Fail(c, nil, "postId有误")
+		return
+	}
+
+	// 查询是否存在该post
+	if _, err := dao.GetPost(uint(postIdInt)); err != nil {
+		response.Fail(c, nil, err.Error())
+		return
+	}
+
+	if err := dao.EditPost(uint(postIdInt), postParam, uint(c.GetInt64("userId"))); err != nil {
+		response.Fail(c, nil, err.Error())
+	} else {
+		response.Success(c, nil, "更新成功")
+	}
 }

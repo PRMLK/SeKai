@@ -1,6 +1,6 @@
 package param
 
-type NewPostParam struct {
+type PostParam struct {
 	Title         string
 	Content       string
 	PostStatus    string

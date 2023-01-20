@@ -9,7 +9,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func NewPost(newPostParam *param.NewPostParam, userId uint) (uint, error) {
+func NewPost(newPostParam *param.PostParam, userId uint) (uint, error) {
 	post := model.Post{
 		Title:         newPostParam.Title,
 		Author:        userId,
@@ -31,4 +31,22 @@ func GetPost(id uint) (post model.Post, err error) {
 		return model.Post{}, errors.New("找不到文章")
 	}
 	return post, nil
+}
+
+func EditPost(postId uint, postParam *param.PostParam, userId uint) error {
+	if err := util.Datebase.Model(&model.Post{
+		Model: gorm.Model{
+			ID: postId,
+		},
+	}).Updates(&model.Post{
+		Title:         postParam.Title,
+		Author:        userId,
+		Content:       postParam.Content,
+		PostStatus:    postParam.PostStatus,
+		CommentStatus: postParam.CommentStatus,
+	}).Error; err != nil {
+		logger.ServerLogger.Debug(err)
+		return errors.New("系统错误")
+	}
+	return nil
 }
