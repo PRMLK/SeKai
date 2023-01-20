@@ -8,6 +8,7 @@ mask = "template/mask/mask.toml"
 [Entrance]
 EntrancesMap = [
     "pages/home/entrance.toml :: /",
+    "pages/post/postentrance.toml :: /post/:id",
 ]
 
 [static]

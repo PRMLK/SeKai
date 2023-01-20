@@ -1,0 +1,29 @@
+<h2 class="sekai-post-title">title placeholder</h2>
+<h3 class="sekai-post-author">author placeholder</h3>
+<h3 class="sekai-post-createtime">create time placeholder</h3>
+<h3 class="sekai-post-updatetime">update time placeholder</h3>
+<p class="sekai-post-p">
+    paragraph placeholder
+</p>
+
+<script>
+    const urlPATH = window.location.pathname.split('/');
+    const postID = urlPATH[urlPATH.length-1];
+    const reqPATH = "http://{{.sekaiSiteRoot}}/v1/post/" + postID.toString();
+    // alert(reqPATH);
+    $.get(reqPATH,function (response){
+        console.log(response);
+        if (response.code===0) {
+            let postContent = response.data.post;
+            $(".sekai-post-title").text(postContent.Title);
+            $(".sekai-post-author").text("Author: "+ postContent.Author);
+            $(".sekai-post-createtime").text("Create Time: "+ postContent.CreatedAt);
+            $(".sekai-post-updatetime").text("Update Time: "+ postContent.UpdatedAt);
+            $(".sekai-post-p").text(postContent.Content);
+
+        }
+        else if (response.code===400) {
+            alert("There is no post " + postID.toString());
+        }
+    })
+</script>

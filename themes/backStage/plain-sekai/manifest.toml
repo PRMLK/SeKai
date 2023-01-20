@@ -7,7 +7,7 @@ mask = "template/mask/mask.toml"
 
 [Entrance]
 EntrancesMap = [
-    "pages/login/entrance.toml :: /backstage/user/login/:id",
+    "pages/login/entrance.toml :: /backstage/user/login",
 ]
 
 [static]
