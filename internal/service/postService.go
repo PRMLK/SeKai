@@ -73,3 +73,27 @@ func EditPostService(c *gin.Context) {
 		response.Success(c, nil, "更新成功")
 	}
 }
+
+func DelPostService(c *gin.Context) {
+	postIdString, _ := c.Params.Get("id")
+
+	// 参数检查
+	postIdInt, err := strconv.ParseInt(postIdString, 10, 64)
+	if err != nil {
+		response.Fail(c, nil, "postId有误")
+		return
+	}
+
+	// 查询是否存在该post
+	if _, err := dao.GetPost(uint(postIdInt)); err != nil {
+		response.Fail(c, nil, err.Error())
+		return
+	}
+
+	// 删除
+	if err := dao.DelPost(uint(postIdInt)); err != nil {
+		response.Fail(c, nil, err.Error())
+	} else {
+		response.Success(c, nil, "更新成功")
+	}
+}

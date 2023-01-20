@@ -50,3 +50,11 @@ func UpdatePost(postId uint, postParam *param.PostParam, userId uint) error {
 	}
 	return nil
 }
+
+func DelPost(id uint) error {
+	if err := util.Datebase.Delete(&model.Post{}, id).Error; err != nil {
+		logger.ServerLogger.Debug(err)
+		return errors.New("系统错误")
+	}
+	return nil
+}
