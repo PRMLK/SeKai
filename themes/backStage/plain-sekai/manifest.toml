@@ -7,13 +7,13 @@ mask = "template/mask/mask.toml"
 
 [Entrance]
 EntrancesMap = [
-    "pages/login/entrance.toml : /backstage/user/login",
+    "pages/login/entrance.toml :: /backstage/user/login/:id",
 ]
 
 [static]
 staticMap = [
-    "template/header/stylesheets/styles.css : /backStage/stylesheets/styles.css",
-    "template/header/scripts/function.js : /backStage/scripts/function.js",
-    "template/header/scripts/styles.js : /backStage/scripts/styles.js",
-    "pages/login/header/stylesheets/styles.css : /user/stylesheets/styles.css"
+    "template/header/stylesheets/styles.css :: /backStage/stylesheets/styles.css",
+    "template/header/scripts/function.js :: /backStage/scripts/function.js",
+    "template/header/scripts/styles.js :: /backStage/scripts/styles.js",
+    "pages/login/header/stylesheets/styles.css :: /user/stylesheets/styles.css"
 ]

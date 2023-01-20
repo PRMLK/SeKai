@@ -61,8 +61,8 @@ func SingleThemeScan(basicDir string, themeName string, themeMap map[string]them
 
 		// 去除所有空格和换行符
 		entranceTomlString = util.StandardizeSpaces(entranceTomlString)
-		entrance.TomlDir = strings.Split(entranceTomlString, ":")[0]
-		entrance.ControllerURL = strings.Split(entranceTomlString, ":")[1]
+		entrance.TomlDir = strings.Split(entranceTomlString, "::")[0]
+		entrance.ControllerURL = strings.Split(entranceTomlString, "::")[1]
 
 		// 加载Entrance toml
 		LoadEntrance(basicDir, themeName, themeMap, tempTemplate, entrance.TomlDir)
@@ -87,8 +87,8 @@ func SingleThemeScan(basicDir string, themeName string, themeMap map[string]them
 	for _, staticFileToml := range themeMap[themeName].Static.StaticMap {
 		var staticFile model.StaticFile
 		staticFileString := util.StandardizeSpaces(staticFileToml)
-		staticFile.FileDir = basicDir + "/" + themeDir + "/" + strings.Split(staticFileString, ":")[0]
-		staticFile.ControllerURL = strings.Split(staticFileString, ":")[1]
+		staticFile.FileDir = basicDir + "/" + themeDir + "/" + strings.Split(staticFileString, "::")[0]
+		staticFile.ControllerURL = strings.Split(staticFileString, "::")[1]
 		theme.StaticFiles = append(theme.StaticFiles, staticFile)
 	}
 	return theme
