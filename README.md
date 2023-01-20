@@ -24,7 +24,7 @@ The project is targetted to be a compact and low memory demanding system without
 - Powerful theme loader
 - Extensions (developing)
 
-With our 'Chunkloader' theme loader, you are able to fully re-design both front stage and back stage theme with modern web designing style. And in the near future, we will armed the SeKai with extension system. Our SeKai has no limit.
+With our `Chunkloader` theme loader, you are able to fully re-design both front stage and back stage theme with modern web designing style. And in the near future, we will armed the SeKai with extension system. Our SeKai has no limit.
 
 ## Installation
 
