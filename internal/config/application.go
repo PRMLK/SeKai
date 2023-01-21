@@ -38,6 +38,9 @@ type applicationConfig struct {
 		SiteBackStageTheme  string `toml:"siteBackStageTheme" default:"Plain-SeKai"`
 		SiteFrontStageTheme string `toml:"siteFrontStageTheme" default:"Plain-SeKai"`
 	} `toml:"siteConfig"`
+	GoogleAuth struct {
+		Salt string `toml:"salt"`
+	} `toml:"googleAuth"`
 }
 
 var ApplicationConfig *applicationConfig

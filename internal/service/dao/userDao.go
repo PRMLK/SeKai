@@ -7,6 +7,7 @@ import (
 	"SeKai/internal/model/param"
 	"SeKai/internal/util"
 	"errors"
+	"gorm.io/gorm"
 )
 
 func UserLogin(loginParam *param.LoginParam) (userID uint, err error) {
@@ -36,6 +37,45 @@ func UserRegister(registerParam *param.RegisterParam) error {
 		return errors.New("用户名已被注册")
 	}
 	if err := util.Datebase.Create(&model.User{Username: registerParam.Username, Email: registerParam.Email, Password: hashPassword}).Error; err != nil {
+		return errors.New("系统错误")
+	}
+	return nil
+}
+
+func GetUserByUsername(username string) (model.User, error) {
+	var user model.User
+	err := util.Datebase.Where(&model.User{Username: username}).Find(&user).Error
+	if err != nil {
+		logger.ServerLogger.Debug("GetUserCode:" + err.Error())
+		return model.User{}, errors.New("系统错误")
+	}
+	return user, nil
+}
+
+func GetUserByID(userId uint) (model.User, error) {
+	var user model.User
+	err := util.Datebase.Where(&model.User{
+		Model: gorm.Model{
+			ID: userId,
+		},
+	}).Find(&user).Error
+	if err != nil {
+		logger.ServerLogger.Debug("GetUserCode:" + err.Error())
+		return model.User{}, errors.New("系统错误")
+	}
+	return user, nil
+}
+
+func SetUserAuthSecret(userId uint, secret string) error {
+	err := util.Datebase.Model(&model.User{
+		Model: gorm.Model{
+			ID: userId,
+		},
+	}).Updates(&model.User{
+		GoogleAuthSecret: secret,
+	}).Error
+	if err != nil {
+		logger.ServerLogger.Debug(err)
 		return errors.New("系统错误")
 	}
 	return nil

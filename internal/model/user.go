@@ -8,10 +8,11 @@ import (
 
 type User struct {
 	gorm.Model
-	Username string
-	Nickname string
-	Email    string
-	Password string
+	Username         string
+	Nickname         string
+	Email            string
+	Password         string
+	GoogleAuthSecret string
 }
 
 func init() {

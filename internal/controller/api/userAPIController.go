@@ -12,6 +12,7 @@ func userAPIController(router *gin.RouterGroup) {
 	{
 		user.POST("/login", service.LoginService)
 		user.POST("/register", service.RegisterService)
+		user.POST("/setGoogleAuthSecret", api.AuthMiddleware(), service.SetGoogleAuthSecret)
 		router.GET("/ping", api.AuthMiddleware(), func(c *gin.Context) {
 			userId := c.MustGet("userId").(string)
 			_, err := c.Writer.WriteString(userId)

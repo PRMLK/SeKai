@@ -27,3 +27,6 @@ siteName = 'SeKai'
 siteDescription = 'powered by Golang'
 siteBackStageTheme = 'Plain-SeKai'
 siteFrontStageTheme = 'Plain-SeKai'
+
+[googleAuth]
+salt = "sekais"

@@ -1,7 +1,9 @@
 package service
 
 import (
+	"SeKai/internal/config"
 	response "SeKai/internal/controller/api/utils"
+	"SeKai/internal/controller/api/utils/googleAuth"
 	"SeKai/internal/logger"
 	"SeKai/internal/model/param"
 	"SeKai/internal/service/dao"
@@ -26,11 +28,24 @@ func LoginService(c *gin.Context) {
 	}
 
 	// 登录逻辑
-	if tempUserID, err := dao.UserLogin(loginParam); err != nil {
-		response.Fail(c, nil, err.Error())
-		return
+	if loginParam.Type == "password" {
+		if tempUserID, err := dao.UserLogin(loginParam); err != nil {
+			response.Fail(c, nil, err.Error())
+			return
+		} else {
+			userID = tempUserID
+		}
+	} else if loginParam.Type == "googleAuth" {
+		user, err := dao.GetUserByUsername(loginParam.Username)
+		if err != nil {
+			response.Fail(c, nil, "用户名或Code错误")
+		}
+		if !googleAuth.VerifyCode(util.HashGoogleSecret(user.GoogleAuthSecret), loginParam.Code) {
+			response.Fail(c, nil, "Code不正确")
+			return
+		}
 	} else {
-		userID = tempUserID
+		response.Fail(c, nil, "传递Type有误")
 	}
 
 	// 释放token
@@ -59,4 +74,22 @@ func RegisterService(c *gin.Context) {
 	} else {
 		response.Success(c, nil, "注册成功")
 	}
+}
+
+func SetGoogleAuthSecret(c *gin.Context) {
+	newSecret := googleAuth.GetSecret()
+	userId := uint(c.GetInt64("userId"))
+
+	if err := dao.SetUserAuthSecret(userId, newSecret); err != nil {
+		response.Fail(c, nil, err.Error())
+		return
+	}
+	user, err := dao.GetUserByID(userId)
+	if err != nil {
+		response.Fail(c, nil, err.Error())
+		return
+	}
+	response.Success(c, gin.H{
+		"secret": "otpauth://totp/" + user.Username + "?secret=" + util.HashGoogleSecret(newSecret) + "&issuer=" + config.ApplicationConfig.SiteConfig.SiteName,
+	}, "设置成功")
 }
