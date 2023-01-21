@@ -7,9 +7,11 @@ import (
 
 func staticController(router *gin.Engine) {
 	for _, staticFile := range themeLoader.BackStageTheme.StaticFiles {
+		staticFile := staticFile
 		router.StaticFile(staticFile.ControllerURL, staticFile.FileDir)
 	}
 	for _, staticFile := range themeLoader.FrontStageTheme.StaticFiles {
+		staticFile := staticFile
 		router.StaticFile(staticFile.ControllerURL, staticFile.FileDir)
 	}
 }
