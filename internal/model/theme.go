@@ -4,7 +4,7 @@ type Theme struct {
 	ThemeName      string
 	ThemeUrl       string
 	Default        Default
-	Entrances      map[string]Entrances
+	Entrances      []Entrances
 	TemplateDetail map[string]string
 	StaticFiles    []StaticFile
 }

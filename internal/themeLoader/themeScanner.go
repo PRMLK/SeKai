@@ -47,12 +47,9 @@ func ThemeBasicScan(basicDir string, themeMap map[string]themeConfig) {
 	}
 }
 
-func SingleThemeScan(basicDir string, themeName string, themeMap map[string]themeConfig) model.Theme {
-	var theme model.Theme
-
+func SingleThemeScan(basicDir string, themeName string, themeMap map[string]themeConfig, theme *model.Theme) {
 	themeDir := themeMap[themeName].ThemeDir
 	// 遍历所有Entrance
-	theme.Entrances = make(map[string]model.Entrances)
 	for _, entranceTomlString := range themeMap[themeName].Entrance.EntrancesMap {
 		wt := bytes.NewBufferString("")
 		var entrance model.Entrances
@@ -78,10 +75,21 @@ func SingleThemeScan(basicDir string, themeName string, themeMap map[string]them
 		})
 		if err != nil {
 			logger.ServerLogger.Error(config.LanguageConfig.ServerLogger.LoadPageError + " " + entranceTomlString + ": " + err.Error())
-			return model.Theme{}
+			return
 		}
 		entrance.CompileString = wt.Bytes()
-		theme.Entrances[entranceTomlString] = entrance
+		exist := false
+		// 判断是否已经存在同名entrances（主要用于重加载）
+		for i := range theme.Entrances {
+			if theme.Entrances[i].TomlDir == entrance.TomlDir {
+				exist = true
+				theme.Entrances[i].CompileString = entrance.CompileString
+				break
+			}
+		}
+		if !exist {
+			theme.Entrances = append(theme.Entrances, entrance)
+		}
 	}
 	// 加载静态文件
 	for _, staticFileToml := range themeMap[themeName].Static.StaticMap {
@@ -91,7 +99,6 @@ func SingleThemeScan(basicDir string, themeName string, themeMap map[string]them
 		staticFile.ControllerURL = strings.Split(staticFileString, "::")[1]
 		theme.StaticFiles = append(theme.StaticFiles, staticFile)
 	}
-	return theme
 }
 
 func LoadEntrance(basicDir string, themeName string, themeMap map[string]themeConfig, tempTemplate *template.Template, TomlDir string) {

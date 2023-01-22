@@ -14,20 +14,22 @@ var FrontStageTheme model.Theme
 func InitThemeLoader() {
 	backStageThemeMap = make(map[string]themeConfig)
 	frontStageThemeMap = make(map[string]themeConfig)
-	BackStageTheme = model.Theme{}
-	FrontStageTheme = model.Theme{}
+	//BackStageTheme = model.Theme{}
+	//FrontStageTheme = model.Theme{}
 
 	ThemeBasicScan("./themes/backStage", backStageThemeMap)
 	ThemeBasicScan("./themes/frontStage", frontStageThemeMap)
 
-	BackStageTheme = SingleThemeScan(
+	SingleThemeScan(
 		"./themes/backStage",
 		config.ApplicationConfig.SiteConfig.SiteBackStageTheme,
 		backStageThemeMap,
+		&BackStageTheme,
 	)
-	FrontStageTheme = SingleThemeScan(
+	SingleThemeScan(
 		"./themes/frontStage",
 		config.ApplicationConfig.SiteConfig.SiteFrontStageTheme,
 		frontStageThemeMap,
+		&FrontStageTheme,
 	)
 }
