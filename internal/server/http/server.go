@@ -3,6 +3,7 @@ package http
 import (
 	"SeKai/internal/config"
 	"SeKai/internal/controller"
+	"SeKai/internal/listener"
 	"SeKai/internal/logger"
 	"SeKai/internal/middleware"
 	"SeKai/internal/themeLoader"
@@ -25,6 +26,8 @@ func StartHTTP() {
 	themeLoader.InitThemeLoader()
 	// 加载控制器
 	controller.InitController(router)
+	// 加载监听器
+	listener.InitListener()
 
 	srv := &http.Server{
 		Addr:    ":" + strconv.Itoa(config.ApplicationConfig.HTTP.Port),

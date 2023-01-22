@@ -7,21 +7,18 @@ import (
 )
 
 func themeController(router *gin.Engine) {
-	for _, entrance := range themeLoader.BackStageTheme.Entrances {
-		// refer: https://stackoverflow.com/questions/70105988/golang-gin-router-with-map-is-picking-only-one-handler
-		entrance := entrance
-		router.GET(entrance.ControllerURL, func(context *gin.Context) {
-			_, err := context.Writer.Write(entrance.CompileString)
+	for i := range themeLoader.BackStageTheme.Entrances {
+		router.GET(themeLoader.BackStageTheme.Entrances[i].ControllerURL, func(context *gin.Context) {
+			_, err := context.Writer.Write(themeLoader.BackStageTheme.Entrances[i].CompileString)
 			if err != nil {
 				logger.ServerLogger.Error(err)
 				return
 			}
 		})
 	}
-	for _, entrance := range themeLoader.FrontStageTheme.Entrances {
-		entrance := entrance
-		router.GET(entrance.ControllerURL, func(context *gin.Context) {
-			_, err := context.Writer.Write(entrance.CompileString)
+	for i := range themeLoader.FrontStageTheme.Entrances {
+		router.GET(themeLoader.FrontStageTheme.Entrances[i].ControllerURL, func(context *gin.Context) {
+			_, err := context.Writer.Write(themeLoader.FrontStageTheme.Entrances[i].CompileString)
 			if err != nil {
 				logger.ServerLogger.Error(err)
 				return
