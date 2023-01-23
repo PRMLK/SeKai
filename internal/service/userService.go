@@ -46,6 +46,7 @@ func LoginService(c *gin.Context) {
 		}
 	} else {
 		response.Fail(c, nil, "传递Type有误")
+		return
 	}
 
 	// 释放token
