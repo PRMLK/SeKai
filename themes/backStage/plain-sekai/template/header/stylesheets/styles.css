@@ -18,25 +18,13 @@ body {
   margin: 0;
 }
 
-.sekai-input {
-  background-color: rgb(245, 245, 247);
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease-in-out;
-  outline: none;
-  border: 0.15rem solid rgb(171, 171, 171);
+.sekai-input-warp {
+  display: block;
+  position: relative;
 }
-.sekai-input:hover {
-  border: 0.15rem solid rgb(126, 126, 126);
-}
-.sekai-input:focus {
-  border: 0.15rem solid rgb(7, 187, 195);
-}
-.sekai-input-label {
+.sekai-input-warp.sekai-text-input-warp .sekai-input-label {
   position: absolute;
   z-index: 2;
-  left: 3vh;
-  top: -1vh;
   font-size: 0.5em;
   background-color: rgb(245, 245, 247);
   transition: all 0.2s ease-in-out;
@@ -44,6 +32,23 @@ body {
   user-select: none;
   padding-left: 0.5vh;
   padding-right: 0.5vh;
+  transform: translate(10px, -10px);
+}
+
+.sekai-input {
+  background-color: rgb(245, 245, 247);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  border: 0.15rem solid rgb(171, 171, 171);
+  position: relative;
+}
+.sekai-input:hover {
+  border: 0.15rem solid rgb(126, 126, 126);
+}
+.sekai-input:focus {
+  border: 0.15rem solid rgb(7, 187, 195);
 }
 
 .sekai-btn {
@@ -97,6 +102,13 @@ body {
   bottom: 1em;
   width: 100%;
   user-select: none;
+}
+
+.sekai-bs-area-wrapper {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /*# sourceMappingURL=styles.css.map */

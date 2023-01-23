@@ -3,7 +3,9 @@ $(".sekai-input-warp").hover(function handlerIn() {
     if (label.length < 0) {
         return false;
     } else {
-        label.css("color", "rgba(126,126,126,1)");
+        if (label.attr("focus") === "false"){
+            label.css("color", "rgba(126,126,126,1)");
+        }
     }
 }, function handlerOut() {
     let label = $(this).children(".sekai-input-label");
@@ -11,7 +13,7 @@ $(".sekai-input-warp").hover(function handlerIn() {
         console.log(label.attr("focus") === "true");
         return false;
     } else {
-        if (label.attr("focus") !== "true") {
+        if (label.attr("focus") === "false") {
             label.css("color", "rgba(171,171,171,1)");
         }
     }

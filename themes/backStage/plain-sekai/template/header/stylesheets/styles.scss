@@ -18,41 +18,15 @@ body {
   margin: 0;
 }
 
-.sekai-input {
-  //border: 0;
-  background-color: $rgba-white;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  transition: all 0.2s ease-in-out;
-  outline: none;
-  border: 0.15rem solid $rgba-grey-0;
-
-  &:hover {
-    border: 0.15rem solid $rgba-grey-3;
-
-    //+.sekai-input-label {
-    //  color: $rgba-grey-3;
-    //
-    //}
-
-    //box-shadow: inset 0 0 0.2rem 0.2rem rgba(0, 0, 0, .1);
-  }
-
-  &:focus {
-    border: 0.15rem solid $rgba-info-0;
-
-    //&~.sekai-input-label {
-    //  color: $rgba-info-0;
-    //}
-
-    //box-shadow: inset 0 0 0.2rem 0.2rem rgba(0, 0, 0, .3);
-  }
-
-  &-label {
+.sekai-input-warp {
+  display: block;
+  position: relative;
+  //height: 20px;
+  &.sekai-text-input-warp .sekai-input-label {
     position: absolute;
     z-index: 2;
-    left: 3vh;
-    top: -1vh;
+    //left: 10px;
+    //top: -10px;
     font-size: 0.5em;
     background-color: $rgba-white;
     transition: all 0.2s ease-in-out;
@@ -62,6 +36,28 @@ body {
       left: 0.5vh;
       right: 0.5vh;
     }
+    transform: translate(10px,-10px);
+  }
+}
+
+.sekai-input {
+  //border: 0;
+  background-color: $rgba-white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  border: 0.15rem solid $rgba-grey-0;
+  position: relative;
+  &:hover {
+    border: 0.15rem solid $rgba-grey-3;
+    //+.sekai-input-label {
+    //  color: $rgba-grey-3;
+    //
+    //}
+  }
+  &:focus {
+    border: 0.15rem solid $rgba-info-0;
   }
 }
 
@@ -124,4 +120,13 @@ body {
   bottom: 1em;
   width: 100%;
   user-select: none;
+}
+
+.sekai-bs-area-wrapper {
+  padding: {
+    top: 30px;
+    bottom: 30px;
+    left: 20px;
+    right: 20px;
+  };
 }

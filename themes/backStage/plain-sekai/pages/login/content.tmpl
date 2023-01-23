@@ -1,14 +1,14 @@
 <form class="sekai-loginform">
     <h1>Sign in to backStage</h1>
-    <div class="sekai-input-warp sekai-auth-username">
+    <div class="sekai-input-warp sekai-text-input-warp sekai-auth-username">
         <label for="username" class="sekai-input-label">USERNAME</label>
         <input class="sekai-input" id="username" type="text" placeholder="">
     </div>
-    <div class="sekai-input-warp sekai-auth-password">
+    <div class="sekai-input-warp sekai-text-input-warp sekai-auth-password">
         <label for="password" class="sekai-input-label">PASSWORD</label>
         <input class="sekai-input" id="password" type="password" placeholder="">
     </div>
-    <input type="button" value="Sign in" id="submit" class="sekai-btn sekai-info" onclick="submitLoginRequest();">
+    <input type="button" value="Sign in" id="submit" class="sekai-btn sekai-info" onclick="submitLoginRequest('password');">
     <input type="button" value="Forget password" id="forget" class="sekai-btn" onclick="">
     <div class="sekai-devide">no account?</div>
     <input type="button" value="Sign up" id="register" class="sekai-btn sekai-success" onclick="">
@@ -18,7 +18,7 @@
 <!-- TODO: add user auth page -->
 <script src="http://{{.sekaiSiteRoot}}/backStage/scripts/styles.js"></script>
 <script>
-    function submitLoginRequest() {
+    function submitLoginRequest(loginType) {
         let inp_usr = $("#username");
         let inp_pwd = $("#password");
         if ((inp_usr.val().trim().length === 0) || (inp_pwd.val().trim().length === 0)) {
@@ -27,11 +27,13 @@
         } else {
             let postContent = {
                 "Username": inp_usr.val(),
-                "Password": inp_pwd.val()
-            }
+                "Password": inp_pwd.val(),
+                "Type": loginType.toString()
+            };
             $.post("http://{{.sekaiSiteRoot}}/v1/user/login", JSON.stringify(postContent), function (response) {
                 if (response.code === 0) {
-                    setCookie("sekai_login_token", response.data.token);
+                    setCookie("sekai_login_token", response.data.token, 7, "'/'");
+                    // $.cookie("sekai_login_token", response.data.token, {expires: 7, path: "/"})
                     alert("Success!");
                 } else if (response.code === 400) {
                     alert(response.msg);

@@ -16,5 +16,6 @@ staticMap = [
     "template/header/stylesheets/styles.css :: /stylesheets/styles.css",
     "template/header/scripts/function.js :: /scripts/function.js",
     "template/header/scripts/styles.js :: /scripts/styles.js",
+    "pages/post/header/stylesheets/style.css :: /post/stylesheets/style.css",
 #    "pages/login/header/stylesheets/styles.css : /user/stylesheets/styles.css"
 ]

@@ -1,0 +1,5 @@
+[entrance]
+header = "pages/postEdit/header/header.toml"
+content = "pages/postEdit/postEdit.toml"
+footer = "default"
+mask = "default"

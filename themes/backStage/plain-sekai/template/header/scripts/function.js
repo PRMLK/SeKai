@@ -3,10 +3,11 @@
 //     focus $rgba-info-0 rgba(  7,187,195,1)
 
 // TODO: debug cookie funtions
-function setCookie(key, value, expires) {
-    var oDate = new Date();
+function setCookie(key, value, expires, path) {
+    let oDate = new Date();
     oDate.setDate(oDate.getDate() + expires);
-    document.cookie = key + '=' + value + ';expires=' + oDate;
+    document.cookie = key + '=' + value + '; expires=' + oDate + '; path=' + path;
+    console.log(key + '=' + value + '; expires=' + oDate + '; path=' + path)
 }
 
 function removeCookie(key) {

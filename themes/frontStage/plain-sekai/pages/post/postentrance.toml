@@ -1,5 +1,5 @@
 [entrance]
-header = "template/header/header.toml"
+header = "pages/post/header/header.toml"
 content = "pages/post/post.toml"
-footer = ""
-mask = ""
+footer = "default"
+mask = "default"

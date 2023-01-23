@@ -1,0 +1,13 @@
+@import "../../../../template/header/stylesheets/function";
+@import "../../../../template/header/stylesheets/colorpalette";
+@import "../../../../template/header/stylesheets/fonts";
+
+.sekai-post-warppers {
+  //background-color: blue;
+  margin: {
+    top: 50px;
+    bottom: 50px;
+    left: 20px;
+    right: 20px;
+  };
+}

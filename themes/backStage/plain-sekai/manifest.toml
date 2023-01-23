@@ -8,12 +8,18 @@ mask = "template/mask/mask.toml"
 [Entrance]
 EntrancesMap = [
     "pages/login/entrance.toml :: /backstage/user/login",
+    "pages/postEdit/entrance.toml :: /backstage/postEdit"
 ]
 
 [static]
 staticMap = [
+#    template header static
     "template/header/stylesheets/styles.css :: /backStage/stylesheets/styles.css",
     "template/header/scripts/function.js :: /backStage/scripts/function.js",
     "template/header/scripts/styles.js :: /backStage/scripts/styles.js",
-    "pages/login/header/stylesheets/styles.css :: /user/stylesheets/styles.css"
+#    login static
+    "pages/login/header/stylesheets/styles.css :: /backStage/user/stylesheets/styles.css",
+#    postEdit static
+    "pages/postEdit/header/stylesheets/styles.css :: /backStage/postEdit/stylesheets/styles.css"
+
 ]

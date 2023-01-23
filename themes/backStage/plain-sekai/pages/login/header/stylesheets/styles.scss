@@ -32,18 +32,19 @@ body {
   }
 
   .sekai-input {
-    @include align-center;
-    position: relative;
+    //position: relative;
     //display: block;
-    margin-top: 2vh;
-    width: 30vh;
+    //margin-top: 2vh;
+    width: 100%;
     color: $rgba-black;
 
     ::placeholder {
       color: $rgba-grey-0;
     }
     &-warp {
-      position: relative;
+      width: 30vh;
+      margin-top: 20px;
+      @include align-center;
     }
   }
 
