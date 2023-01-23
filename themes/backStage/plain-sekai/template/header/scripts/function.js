@@ -6,8 +6,8 @@
 function setCookie(key, value, expires, path) {
     let oDate = new Date();
     oDate.setDate(oDate.getDate() + expires);
+    // console.log(key + '=' + value + '; expires=' + oDate + '; path=' + path);
     document.cookie = key + '=' + value + '; expires=' + oDate + '; path=' + path;
-    console.log(key + '=' + value + '; expires=' + oDate + '; path=' + path)
 }
 
 function removeCookie(key) {

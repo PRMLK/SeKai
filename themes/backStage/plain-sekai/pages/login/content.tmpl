@@ -32,7 +32,7 @@
             };
             $.post("http://{{.sekaiSiteRoot}}/v1/user/login", JSON.stringify(postContent), function (response) {
                 if (response.code === 0) {
-                    setCookie("sekai_login_token", response.data.token, 7, "'/'");
+                    setCookie("sekai_login_token", response.data.token, 7, "/");
                     // $.cookie("sekai_login_token", response.data.token, {expires: 7, path: "/"})
                     alert("Success!");
                 } else if (response.code === 400) {
