@@ -12,6 +12,12 @@ type User struct {
 	Nickname         string
 	Email            string
 	Password         string
+	FirstName        string
+	LastName         string
+	SiteUrl          string
+	Language         string
+	Bio              string
+	ProfilePhoto     string
 	GoogleAuthSecret string
 }
 

@@ -21,5 +21,7 @@ func userAPIController(router *gin.RouterGroup) {
 				return
 			}
 		})
+		user.GET("/profile", api.AuthMiddleware(), service.Profile)
+		user.PUT("/profile", api.AuthMiddleware(), service.UpdateProfile)
 	}
 }

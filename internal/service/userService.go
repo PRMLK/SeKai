@@ -93,3 +93,38 @@ func SetGoogleAuthSecret(c *gin.Context) {
 		"secret": "otpauth://totp/" + user.Username + "?secret=" + util.HashGoogleSecret(newSecret) + "&issuer=" + config.ApplicationConfig.SiteConfig.SiteName,
 	}, "设置成功")
 }
+
+func Profile(c *gin.Context) {
+	user, _ := dao.GetUserByID(uint(c.GetInt64("userId")))
+
+	response.Success(c,
+		gin.H{"profile": gin.H{
+			"userId":       user.ID,
+			"Username":     user.Username,
+			"Nickname":     user.Nickname,
+			"CreatedAt":    user.Model.CreatedAt,
+			"Bio":          user.Bio,
+			"Language":     user.Language,
+			"FirstName":    user.FirstName,
+			"LastName":     user.LastName,
+			"Email":        user.Email,
+			"ProfilePhoto": user.ProfilePhoto,
+			"SiteUrl":      user.SiteUrl,
+		}}, "查询成功")
+}
+
+func UpdateProfile(c *gin.Context) {
+	userProfileParam := new(param.UserProfileUpdateParam)
+	userId := uint(c.GetInt64("userId"))
+	// 参数检查
+	if err := c.ShouldBindJSON(&userProfileParam); err != nil {
+		logger.ServerLogger.Info(err)
+		response.Fail(c, nil, "传递参数有误")
+		return
+	}
+
+	if err := dao.UpdateUser(userId, userProfileParam); err != nil {
+		response.Fail(c, nil, err.Error())
+	}
+	response.Success(c, nil, "更新成功")
+}

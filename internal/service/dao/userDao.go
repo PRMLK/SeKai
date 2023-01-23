@@ -80,3 +80,25 @@ func SetUserAuthSecret(userId uint, secret string) error {
 	}
 	return nil
 }
+
+func UpdateUser(userId uint, userProfileParam *param.UserProfileUpdateParam) error {
+	if err := util.Datebase.Model(&model.User{
+		Model: gorm.Model{
+			ID: userId,
+		},
+	}).Updates(&model.User{
+		ProfilePhoto: userProfileParam.ProfilePhoto,
+		SiteUrl:      userProfileParam.SiteUrl,
+		Email:        userProfileParam.Email,
+		LastName:     userProfileParam.LastName,
+		Bio:          userProfileParam.Bio,
+		FirstName:    userProfileParam.FirstName,
+		Language:     userProfileParam.Language,
+		Nickname:     userProfileParam.Nickname,
+	}).Error; err != nil {
+		logger.ServerLogger.Debug(err)
+		return errors.New("系统错误")
+	}
+	return nil
+
+}
