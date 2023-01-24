@@ -30,15 +30,31 @@
                 "Password": inp_pwd.val(),
                 "Type": loginType.toString()
             };
-            $.post("http://{{.sekaiSiteRoot}}/v1/user/login", JSON.stringify(postContent), function (response) {
-                if (response.code === 0) {
-                    setCookie("sekai_login_token", response.data.token, 7, "/");
-                    // $.cookie("sekai_login_token", response.data.token, {expires: 7, path: "/"})
-                    alert("Success!");
-                } else if (response.code === 400) {
-                    alert(response.msg);
+            $.ajax({
+                url: "http://{{.sekaiSiteRoot}}/v1/user/login",
+                type: "post",
+                contentType: "application/json",
+                beforeSend: function (request) {},
+                data: JSON.stringify(postContent),
+                success: function (response) {
+                    if (response.code === 0) {
+                        setCookie("sekai_login_token", response.data.token, 7, "/");
+                        // $.cookie("sekai_login_token", response.data.token, {expires: 7, path: "/"})
+                        alert("Success!");
+                    } else if (response.code === 400) {
+                        alert(response.msg);
+                    }
                 }
-            }, "json");
+            });
+            // $.post("http://{{.sekaiSiteRoot}}/v1/user/login", JSON.stringify(postContent), function (response) {
+            //     if (response.code === 0) {
+            //         setCookie("sekai_login_token", response.data.token, 7, "/");
+            //         // $.cookie("sekai_login_token", response.data.token, {expires: 7, path: "/"})
+            //         alert("Success!");
+            //     } else if (response.code === 400) {
+            //         alert(response.msg);
+            //     }
+            // }, "json");
             // alert("POSTED.");
         }
     }

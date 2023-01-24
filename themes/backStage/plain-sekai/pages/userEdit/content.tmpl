@@ -1,0 +1,105 @@
+<div class="sekai-bs-area-wrapper" id="postEdit">
+    <div class="sekai-input-warp sekai-text-input-warp">
+        <label for="userid" class="sekai-input-label">USERID</label>
+        <input class="sekai-input" id="userid" type="text" placeholder="">
+    </div>
+    <div class="sekai-input-warp sekai-text-input-warp">
+        <label for="username" class="sekai-input-label">USERNAME</label>
+        <input class="sekai-input" id="username" type="text" placeholder="">
+    </div>
+    <div class="sekai-input-warp sekai-text-input-warp">
+        <label for="nickname" class="sekai-input-label">NICKNAME</label>
+        <input class="sekai-input" id="nickname" type="text" placeholder="">
+    </div>
+    <div class="sekai-input-group">
+        <div class="sekai-input-warp sekai-text-input-warp">
+            <label for="firstname" class="sekai-input-label">FIRST NAME</label>
+            <input class="sekai-input" id="firstname" type="text" placeholder="">
+        </div>
+        <div class="sekai-input-warp sekai-text-input-warp">
+            <label for="lastname" class="sekai-input-label">LAST NAME</label>
+            <input class="sekai-input" id="lastname" type="text" placeholder="">
+        </div>
+    </div>
+    <div class="sekai-input-warp sekai-text-input-warp">
+        <label for="email" class="sekai-input-label">EMAIL</label>
+        <input class="sekai-input" id="email" type="email" placeholder="">
+    </div>
+    <div class="sekai-input-warp sekai-text-input-warp sekai-textarea-input-warp">
+        <label for="bio" class="sekai-input-label">BIO</label>
+        <textarea class="sekai-input" id="bio"></textarea>
+    </div>
+    <div class="sekai-input-warp sekai-text-input-warp">
+        <label for="siteurl" class="sekai-input-label">SITE</label>
+        <input class="sekai-input" id="siteurl" type="url" placeholder="">
+    </div>
+    <div class="sekai-input-warp sekai-dropdown-input-warp">
+        <input type="button" value="Post" id="submit" class="sekai-btn sekai-info" onclick="submitPostRequest();">
+    </div>
+</div>
+
+<script src="http://{{.sekaiSiteRoot}}/backStage/scripts/styles.js"></script>
+<script>
+    document.onload(getUserProfile());
+
+    function getUserProfile() {
+        if (getCookie("sekai_login_token") === false) {
+            alert("NO TOKEN.");
+            return false;
+        }
+        $.ajax({
+            url: "http://{{.sekaiSiteRoot}}/v1/user/profile",
+            type: "get",
+            contentType: "application/json",
+            beforeSend: function (request) {
+                request.setRequestHeader("Authorization", getCookie("sekai_login_token"));
+            },
+            success: function (response) {
+                // alert(response.msg);
+                profile = response.data.profile;
+                $(".sekai-input#userid").val(profile.userId);
+                $(".sekai-input#username").val(profile.Username);
+                $(".sekai-input#nickname").val(profile.Nickname);
+                $(".sekai-input#firstname").val(profile.FirstName);
+                $(".sekai-input#lastname").val(profile.LastName);
+                $(".sekai-input#email").val(profile.Email);
+                $(".sekai-input#bio").val(profile.Bio);
+                $(".sekai-input#siteurl").val(profile.SiteUrl);
+            }
+        });
+    }
+
+    function submitPostRequest() {
+        if (getCookie("sekai_login_token") === false) {
+            alert("NO TOKEN.");
+            return false;
+        }
+        let inp_ttl = $("#title");
+        let inp_ctt = $("#content");
+        let inp_pst_st = $("#postStatus");
+        let inp_cmt_st = $("#commentStatus");
+        if ((inp_ttl.val().trim().length === 0) || (inp_ctt.val().trim().length === 0) || (inp_pst_st.val().trim().length === 0) || (inp_cmt_st.val().trim().length === 0)) {
+            alert("some input field remain empty.");
+            return false;
+        } else {
+            let postContent = {
+                "Title": inp_ttl.val(),
+                "Content": inp_ctt.val(),
+                "PostStatus": inp_pst_st.val(),
+                "CommentStatus": inp_cmt_st.val()
+            };
+            $.ajax({
+                url: "http://{{.sekaiSiteRoot}}/v1/post/new",
+                type: "post",
+                contentType: "application/json",
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authorization", getCookie("sekai_login_token"));
+                },
+                data: JSON.stringify(postContent),
+                success: function (response) {
+                    alert(response.msg);
+                }
+            })
+        }
+    }
+</script>

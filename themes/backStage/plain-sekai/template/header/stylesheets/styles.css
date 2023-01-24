@@ -111,4 +111,21 @@ body {
   padding-right: 20px;
 }
 
+.sekai-dropdown {
+  background-color: rgb(245, 245, 247);
+  font-size: 1em;
+  border-radius: 0.5rem;
+  color: rgb(171, 171, 171);
+  border: 0.15rem solid rgb(171, 171, 171);
+  transition: all 0.2s ease-in-out;
+}
+.sekai-dropdown:hover {
+  color: rgb(126, 126, 126);
+  border: 0.15rem solid rgb(126, 126, 126);
+}
+.sekai-dropdown:focus {
+  color: rgb(29, 29, 31);
+  border: 0.15rem solid rgb(7, 187, 195);
+}
+
 /*# sourceMappingURL=styles.css.map */

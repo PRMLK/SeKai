@@ -1,0 +1,37 @@
+* {
+  font-family: "Noto Sans SC", sans-serif;
+  color: #1D1D1F;
+}
+
+.sekai-bs-area-wrapper {
+  padding: 2vw;
+  background-color: rgb(245, 245, 247);
+}
+
+.sekai-input-group {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.sekai-input-group .sekai-input-warp {
+  width: 200px;
+}
+
+.sekai-input-warp {
+  margin-top: 20px;
+}
+
+.sekai-text-input-warp {
+  width: 400px;
+  height: 40px;
+}
+.sekai-text-input-warp .sekai-input {
+  height: 100%;
+  width: 100%;
+}
+
+.sekai-textarea-input-warp {
+  width: 400px;
+  height: 80px;
+}
+
+/*# sourceMappingURL=styles.css.map */
