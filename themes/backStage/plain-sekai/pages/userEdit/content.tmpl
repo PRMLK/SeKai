@@ -34,7 +34,7 @@
         <input class="sekai-input" id="siteurl" type="url" placeholder="">
     </div>
     <div class="sekai-input-warp sekai-dropdown-input-warp">
-        <input type="button" value="Post" id="submit" class="sekai-btn sekai-info" onclick="submitPostRequest();">
+        <input type="button" value="Post" id="submit" class="sekai-btn sekai-info" onclick="putUserProfile();">
     </div>
 </div>
 
@@ -69,28 +69,47 @@
         });
     }
 
-    function submitPostRequest() {
+    function putUserProfile() {
         if (getCookie("sekai_login_token") === false) {
             alert("NO TOKEN.");
             return false;
         }
-        let inp_ttl = $("#title");
-        let inp_ctt = $("#content");
-        let inp_pst_st = $("#postStatus");
-        let inp_cmt_st = $("#commentStatus");
-        if ((inp_ttl.val().trim().length === 0) || (inp_ctt.val().trim().length === 0) || (inp_pst_st.val().trim().length === 0) || (inp_cmt_st.val().trim().length === 0)) {
-            alert("some input field remain empty.");
+        // le.userId);
+        // file.Username);
+        // file.Nickname);
+        // ofile.FirstName);
+        // file.LastName);
+        // e.Email);
+        // Bio);
+        // ile.SiteUrl);
+        let inp_usr_id = $(".sekai-input#userid").val();
+        let inp_usr_nme = $(".sekai-input#username").val();
+        let inp_nck_nme = $(".sekai-input#nickname").val();
+        let inp_fst_nme = $(".sekai-input#firstname").val();
+        let inp_lst_nme = $(".sekai-input#lastname").val();
+        let inp_eml = $(".sekai-input#email").val();
+        let inp_bio = $(".sekai-input#bio").val();
+        let inp_ste_url = $(".sekai-input#siteurl").val();
+        if ((inp_usr_id.trim().length === 0) || (inp_usr_nme.trim().length === 0) || (inp_eml.trim().length === 0)) {
+            alert("USERID, USERNAME or EMAIL is not able to be remained empty.");
             return false;
         } else {
             let postContent = {
-                "Title": inp_ttl.val(),
-                "Content": inp_ctt.val(),
-                "PostStatus": inp_pst_st.val(),
-                "CommentStatus": inp_cmt_st.val()
+                "userId": inp_usr_id,
+                "Username": inp_usr_nme,
+                "Nickname": inp_nck_nme,
+                "FirstName": inp_fst_nme,
+                "LastName": inp_lst_nme,
+                "Email": inp_eml,
+                "Bio": inp_bio,
+                "SiteUrl": inp_ste_url,
+                "CreatedAt": null,
+                "Language": null,
+                "ProfilePhoto": null,
             };
             $.ajax({
-                url: "http://{{.sekaiSiteRoot}}/v1/post/new",
-                type: "post",
+                url: "http://{{.sekaiSiteRoot}}/v1/user/profile",
+                type: "put",
                 contentType: "application/json",
                 beforeSend: function (request) {
                     request.setRequestHeader("Authorization", getCookie("sekai_login_token"));
@@ -98,6 +117,7 @@
                 data: JSON.stringify(postContent),
                 success: function (response) {
                     alert(response.msg);
+                    location.reload();
                 }
             })
         }
