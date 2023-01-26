@@ -136,7 +136,7 @@ func LoadEntrance(basicDir string, themeName string, themeMap map[string]themeCo
 			}
 		} else {
 			// 清空当前页面所有header标识不加载
-			nowTemplateString, _ = util.ReplaceStringByRegex(nowTemplateString, "{{\\s*template\\s*\" "+"header"+" \"\\s*.\\s*}}", "")
+			nowTemplateString, _ = util.ReplaceStringByRegex(nowTemplateString, "{{\\s*template\\s*\""+"header"+"\"\\s*.\\s*}}", "")
 		}
 
 		// 加载 content 组件
@@ -162,7 +162,7 @@ func LoadEntrance(basicDir string, themeName string, themeMap map[string]themeCo
 			}
 		} else {
 			// 清空当前页面所有header标识不加载
-			nowTemplateString, _ = util.ReplaceStringByRegex(nowTemplateString, "{{\\s*template\\s*\" "+"footer"+" \"\\s*.\\s*}}", "")
+			nowTemplateString, _ = util.ReplaceStringByRegex(nowTemplateString, "{{\\s*template\\s*\""+"footer"+"\"\\s*.\\s*}}", "")
 		}
 
 		// 加载 mask 组件
@@ -177,10 +177,11 @@ func LoadEntrance(basicDir string, themeName string, themeMap map[string]themeCo
 			}
 		} else {
 			// 清空当前页面所有header标识不加载
-			nowTemplateString, _ = util.ReplaceStringByRegex(nowTemplateString, "{{\\s*template\\s*\" "+"mask"+" \"\\s*.\\s*}}", "")
+			nowTemplateString, _ = util.ReplaceStringByRegex(nowTemplateString, "{{\\s*template\\s*\""+"mask"+"\"\\s*.\\s*}}", "")
 		}
 
 		if tempTemplate, err = tempTemplate.New("entrance").Parse(nowTemplateString); err != nil {
+			logger.ServerLogger.Debug(err)
 		}
 	}
 }
@@ -238,7 +239,7 @@ func LoadPage(basicDir string, themeDir string, TomlDir string, template *templa
 				}
 			} else {
 				// 清空当前页面所有 header 标识不加载
-				nowData, _ = util.ReplaceStringByRegex(nowData, "{{\\s*template\\s*\" "+"header"+" \"\\s*.\\s*}}", "")
+				nowData, _ = util.ReplaceStringByRegex(nowData, "{{\\s*template\\s*\""+"header"+"\"\\s*.\\s*}}", "")
 			}
 			if pageConfig.Custom.Footer != "" {
 				if pageConfig.Custom.Footer != "default" {
@@ -249,7 +250,7 @@ func LoadPage(basicDir string, themeDir string, TomlDir string, template *templa
 				}
 			} else {
 				// 清空当前页面所有 footer 标识不加载
-				nowData, _ = util.ReplaceStringByRegex(nowData, "{{\\s*template\\s*\" "+"footer"+" \"\\s*.\\s*}}", "")
+				nowData, _ = util.ReplaceStringByRegex(nowData, "{{\\s*template\\s*\""+"footer"+"\"\\s*.\\s*}}", "")
 			}
 			if pageConfig.Custom.Mask != "" {
 				if pageConfig.Custom.Mask != "default" {
@@ -260,7 +261,7 @@ func LoadPage(basicDir string, themeDir string, TomlDir string, template *templa
 				}
 			} else {
 				// 清空当前页面所有 mask 标识不加载
-				nowData, _ = util.ReplaceStringByRegex(nowData, "{{\\s*template\\s*\" "+"mask"+" \"\\s*.\\s*}}", "")
+				nowData, _ = util.ReplaceStringByRegex(nowData, "{{\\s*template\\s*\""+"mask"+"\"\\s*.\\s*}}", "")
 			}
 			// 加载自身
 			if template, err = template.New(templateLink).Parse(nowData); err != nil {
