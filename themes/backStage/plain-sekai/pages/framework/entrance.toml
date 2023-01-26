@@ -1,0 +1,5 @@
+[entrance]
+header = "pages/framework/header/header.toml"
+content = "pages/framework/framework.toml"
+footer = ""
+mask = "default"

@@ -10,6 +10,7 @@ EntrancesMap = [
     "pages/login/entrance.toml :: /backstage/user/login",
     "pages/postEdit/entrance.toml :: /backstage/postEdit",
     "pages/userEdit/entrance.toml :: /backstage/userEdit",
+    "pages/framework/entrance.toml :: /backstage/",
 ]
 
 [static]
@@ -20,6 +21,8 @@ staticMap = [
     "template/header/scripts/styles.js :: /backStage/scripts/styles.js",
 #    login static
     "pages/login/header/stylesheets/styles.css :: /backStage/user/stylesheets/styles.css",
+#    framework static
+    "pages/framework/header/stylesheets/styles.css :: /backStage/framework/stylesheets/styles.css",
 #    postEdit static
     "pages/postEdit/header/stylesheets/styles.css :: /backStage/postEdit/stylesheets/styles.css",
 #    userEdit static

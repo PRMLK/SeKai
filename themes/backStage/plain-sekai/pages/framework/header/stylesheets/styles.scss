@@ -1,0 +1,20 @@
+@import "../../../../template/header/stylesheets/function";
+@import "../../../../template/header/stylesheets/colorpalette";
+@import "../../../../template/header/stylesheets/fonts";
+
+body {
+  overflow: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: $rgba-white;
+}
+
+.sekai-bs-control {
+  border: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.sekai-bs-wrapper {
+  width: 70%;
+}

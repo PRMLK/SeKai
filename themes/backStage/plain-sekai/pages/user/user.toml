@@ -1,4 +1,0 @@
-[custom]
-header = "template/header/header.tmpl"
-footer = "template/footer/footer.tmpl"
-mask = "template/mask/mask.tmpl"

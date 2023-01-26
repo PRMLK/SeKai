@@ -1,0 +1,23 @@
+* {
+  font-family: "Noto Sans SC", sans-serif;
+  color: #1D1D1F;
+}
+
+body {
+  overflow: hidden;
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: rgb(245, 245, 247);
+}
+
+.sekai-bs-control {
+  border: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.sekai-bs-wrapper {
+  width: 70%;
+}
+
+/*# sourceMappingURL=styles.css.map */
