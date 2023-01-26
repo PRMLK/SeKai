@@ -9,7 +9,6 @@ import (
 	"SeKai/internal/themeLoader"
 	"context"
 	"github.com/gin-gonic/gin"
-	"log"
 	"net/http"
 	"os"
 	"os/signal"
@@ -40,6 +39,7 @@ func StartHTTP() {
 		}
 	}()
 
+	// 监听退出信号(Ctrl + C)
 	quit := make(chan os.Signal)
 	signal.Notify(quit, os.Interrupt)
 	<-quit
@@ -48,7 +48,7 @@ func StartHTTP() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		log.Fatal(config.LanguageConfig.ServerLogger.HTTPServerShutdownError+": ", err)
+		logger.ServerLogger.Debug(config.LanguageConfig.ServerLogger.HTTPServerShutdownError+": ", err)
 	}
-	log.Println(config.LanguageConfig.ServerLogger.HTTPServerExited)
+	logger.ServerLogger.Info(config.LanguageConfig.ServerLogger.HTTPServerExited)
 }

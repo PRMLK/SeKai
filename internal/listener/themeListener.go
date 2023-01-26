@@ -30,6 +30,7 @@ func ThemeListener() {
 	}()
 }
 
+// 获取主题所有目录并加入watcher
 func getThemeDirMap(baseDirString string, watcher *fsnotify.Watcher) {
 	baseDir, err := os.ReadDir(baseDirString)
 	if err != nil {

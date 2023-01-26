@@ -19,6 +19,7 @@ type User struct {
 	Bio              string
 	ProfilePhoto     string
 	GoogleAuthSecret string
+	Role             string
 }
 
 func init() {

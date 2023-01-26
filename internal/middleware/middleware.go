@@ -5,5 +5,6 @@ import (
 )
 
 func LoadMiddleware(router *gin.Engine) {
+	// HttpLogger
 	router.Use(loggerMiddleware())
 }

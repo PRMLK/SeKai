@@ -12,14 +12,15 @@ var BackStageTheme model.Theme
 var FrontStageTheme model.Theme
 
 func InitThemeLoader() {
+	// 储存所有主题的manifest.toml中的信息
 	backStageThemeMap = make(map[string]themeConfig)
 	frontStageThemeMap = make(map[string]themeConfig)
-	//BackStageTheme = model.Theme{}
-	//FrontStageTheme = model.Theme{}
 
+	// 扫描所有主题的基本信息
 	ThemeBasicScan("./themes/backStage", backStageThemeMap)
 	ThemeBasicScan("./themes/frontStage", frontStageThemeMap)
 
+	// 加载配置文件中指定的主题
 	SingleThemeScan(
 		"./themes/backStage",
 		config.ApplicationConfig.SiteConfig.SiteBackStageTheme,
