@@ -17,4 +17,11 @@ body {
 
 .sekai-bs-wrapper {
   width: 70%;
+  height: 100%;
+}
+
+.sekai-bs-sidebar {
+  background-color: $rgba-grey-0;
+  width: 30%;
+  height: 100%;
 }

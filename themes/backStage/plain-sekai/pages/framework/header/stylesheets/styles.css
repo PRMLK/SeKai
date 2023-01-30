@@ -18,6 +18,13 @@ body {
 
 .sekai-bs-wrapper {
   width: 70%;
+  height: 100%;
+}
+
+.sekai-bs-sidebar {
+  background-color: rgb(171, 171, 171);
+  width: 30%;
+  height: 100%;
 }
 
 /*# sourceMappingURL=styles.css.map */
