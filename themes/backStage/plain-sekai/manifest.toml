@@ -7,10 +7,10 @@ mask = "template/mask/mask.toml"
 
 [Entrance]
 EntrancesMap = [
-    "pages/login/entrance.toml :: /backstage/user/login",
-    "pages/postEdit/entrance.toml :: /backstage/postEdit",
-    "pages/userEdit/entrance.toml :: /backstage/userEdit",
-    "pages/framework/entrance.toml :: /backstage/",
+    "pages/user/login/entrance.toml :: /backStage/user/login",
+    "pages/post/create/entrance.toml :: /backStage/post/create",
+    "pages/user/edit/entrance.toml :: /backStage/user/edit",
+    "pages/framework/entrance.toml :: /backStage/",
 ]
 
 [static]
@@ -20,12 +20,12 @@ staticMap = [
     "template/header/scripts/function.js :: /backStage/scripts/function.js",
     "template/header/scripts/styles.js :: /backStage/scripts/styles.js",
 #    login static
-    "pages/login/header/stylesheets/styles.css :: /backStage/user/stylesheets/styles.css",
+    "pages/user/login/header/stylesheets/styles.css :: /backStage/user/login/stylesheets/styles.css",
 #    framework static
     "pages/framework/header/stylesheets/styles.css :: /backStage/framework/stylesheets/styles.css",
 #    postEdit static
-    "pages/postEdit/header/stylesheets/styles.css :: /backStage/postEdit/stylesheets/styles.css",
+    "pages/post/create/header/stylesheets/styles.css :: /backStage/post/create/stylesheets/styles.css",
 #    userEdit static
-    "pages/userEdit/header/stylesheets/styles.css :: /backStage/userEdit/stylesheets/styles.css",
+    "pages/user/edit/header/stylesheets/styles.css :: /backStage/user/edit/stylesheets/styles.css",
 
 ]

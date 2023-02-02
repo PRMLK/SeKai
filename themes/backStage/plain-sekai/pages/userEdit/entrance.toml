@@ -1,5 +1,0 @@
-[entrance]
-header = "pages/userEdit/header/header.toml"
-content = "pages/userEdit/userEdit.toml"
-footer = ""
-mask = "default"

@@ -1,0 +1,5 @@
+[entrance]
+header = "pages/user/edit/header/header.toml"
+content = "pages/user/edit/userEdit.toml"
+footer = ""
+mask = "default"

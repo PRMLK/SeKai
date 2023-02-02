@@ -21,7 +21,71 @@ body {
 }
 
 .sekai-bs-sidebar {
-  background-color: $rgba-grey-0;
+  background-color: $rgba-white;
   width: 30%;
   height: 100%;
+  max-width: 15rem;
+}
+
+.sekai-bs-sidebar-group {
+  color: $rgba-black;
+  background-color: $rgba-grey-1;
+  height: 2.5rem;
+  margin: {
+    left: 1em;
+    right: 1em;
+    top: 1em;
+  };
+  padding: 0;
+  border-radius: 8px;
+  border: 0.15rem solid $rgba-grey-0;
+  overflow: hidden;
+  &-label {
+    color: $rgba-black;
+    padding: {
+      top: 0.25rem;
+      bottom: 0.25rem;
+      left: 1rem;
+      right: 0.25rem;
+    };
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  &-wrapper {
+
+    list-style-type: none;
+    padding: {
+      left: 0;
+    };
+    margin: {
+      top: 0;
+      bottom: 0;
+    };
+    li {
+      color: $rgba-black;
+      user-select: none;
+      cursor: pointer;
+      display: block;
+      line-height: 2rem;
+      &:hover {
+        background-color: $rgba-grey-0;
+      }
+      height: 2rem;
+      padding: {
+        top: 0.25rem;
+        bottom: 0.25rem;
+        left: 2rem;
+        right: 0.25rem;
+      };
+      transition: 0.5s;
+    }
+  }
+  transition: 0.5s ease-out;
+}
+
+.sekai-bs-sidebar-group-label {
+
 }

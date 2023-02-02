@@ -1,5 +1,0 @@
-[entrance]
-header = "pages/login/header/header.toml"
-content = "pages/login/login.toml"
-footer = ""
-mask = ""

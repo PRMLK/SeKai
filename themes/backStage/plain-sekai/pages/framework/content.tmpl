@@ -1,7 +1,37 @@
 <div class="sekai-bs-sidebar">
-
+    <div class="sekai-bs-sidebar-group" active="false">
+        <div class="sekai-bs-sidebar-group-label">posts</div>
+        <ul class="sekai-bs-sidebar-group-wrapper">
+            <li>new</li>
+            <li>edit</li>
+        </ul>
+    </div>
+    <div class="sekai-bs-sidebar-group" active="false">
+        <div class="sekai-bs-sidebar-group-label">users</div>
+        <ul class="sekai-bs-sidebar-group-wrapper">
+            <li>edit</li>
+            <li>management</li>
+        </ul>
+    </div>
 </div>
 <div class="sekai-bs-wrapper">
-    <iframe class="sekai-bs-control" name="sekai-bs-control" scrolling="no" src="http://{{.sekaiSiteRoot}}/backstage/userEdit">
+    <iframe class="sekai-bs-control" name="sekai-bs-control" scrolling="no" src="http://{{.sekaiSiteRoot}}/backStage/user/edit">
     </iframe>
 </div>
+<script>
+    window.onload=function(){
+        let sbLabels = document.getElementsByClassName("sekai-bs-sidebar-group-label")
+        for (let i=0; i<sbLabels.length; i++) {
+            sbLabels[i].addEventListener("click", function () {
+                if(sbLabels[i].classList.contains("active")===false) {
+                    sbLabels[i].classList.add("active");
+                    sbLabels[i].parentNode.style.height=`${(sbLabels[i].parentNode.getElementsByClassName("sekai-bs-sidebar-group-wrapper")[0].children.length + 1) * 2.5}rem`
+                }
+                else {
+                    sbLabels[i].classList.remove("active");
+                    sbLabels[i].parentNode.style.height=`2.5rem`
+                }
+            })
+        }
+    }
+</script>

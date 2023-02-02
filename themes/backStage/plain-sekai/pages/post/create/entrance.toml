@@ -1,0 +1,5 @@
+[entrance]
+header = "pages/post/create/header/header.toml"
+content = "pages/post/create/postCreate.toml"
+footer = ""
+mask = "default"

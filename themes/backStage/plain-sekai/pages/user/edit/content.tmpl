@@ -40,7 +40,7 @@
 
 <script src="http://{{.sekaiSiteRoot}}/backStage/scripts/styles.js"></script>
 <script>
-    document.onload(getUserProfile());
+    document.onload = getUserProfile();
 
     function getUserProfile() {
         if (getCookie("sekai_login_token") === false) {

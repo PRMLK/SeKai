@@ -8,7 +8,8 @@
         <label for="password" class="sekai-input-label">PASSWORD</label>
         <input class="sekai-input" id="password" type="password" placeholder="">
     </div>
-    <input type="button" value="Sign in" id="submit" class="sekai-btn sekai-info" onclick="submitLoginRequest('password');">
+    <input type="button" value="Sign in" id="submit" class="sekai-btn sekai-info"
+           onclick="submitLoginRequest('password');">
     <input type="button" value="Forget password" id="forget" class="sekai-btn" onclick="">
     <div class="sekai-devide">no account?</div>
     <input type="button" value="Sign up" id="register" class="sekai-btn sekai-success" onclick="">
@@ -34,7 +35,8 @@
                 url: "http://{{.sekaiSiteRoot}}/v1/user/login",
                 type: "post",
                 contentType: "application/json",
-                beforeSend: function (request) {},
+                beforeSend: function (request) {
+                },
                 data: JSON.stringify(postContent),
                 success: function (response) {
                     if (response.code === 0) {
@@ -57,5 +59,33 @@
             // }, "json");
             // alert("POSTED.");
         }
+    }
+
+    window.onload = function () {
+        let lTk = getCookie("sekai_login_token");
+        if (lTk === false) return;
+        $.ajax({
+            url: "http://{{.sekaiSiteRoot}}/v1/user/profile",
+            type: "get",
+            contentType: "application/json",
+            beforeSend: function (request) {
+                request.setRequestHeader("Authorization", getCookie("sekai_login_token"));
+            },
+            success: function (response) {
+                // alert(response.msg);
+                profile = response.data.profile;
+                console.log(profile);
+                userid = profile.userId;
+                username = profile.Username;
+                nickname = profile.Nickname;
+                firstname = profile.FirstName;
+                lastname = profile.LastName;
+                email = profile.Email;
+                bio = profile.Bio;
+                siteurl = profile.SiteUrl;
+
+                window.location.replace("http://{{.sekaiSiteRoot}}/backStage/");
+            }
+        });
     }
 </script>
