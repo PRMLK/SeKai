@@ -7,6 +7,7 @@ import (
 	"SeKai/internal/logger"
 	"SeKai/internal/model/param"
 	"SeKai/internal/service/dao"
+	"SeKai/internal/service/dto"
 	"SeKai/internal/util"
 	"github.com/gin-gonic/gin"
 )
@@ -17,7 +18,7 @@ import (
 	需要返回给请求者的信息可以通过Error向上传递
 */
 
-func LoginService(c *gin.Context) {
+func Login(c *gin.Context) {
 	var userID uint
 	loginParam := new(param.LoginParam)
 	// 参数检查
@@ -59,7 +60,7 @@ func LoginService(c *gin.Context) {
 	}
 }
 
-func RegisterService(c *gin.Context) {
+func Register(c *gin.Context) {
 	registerParam := new(param.RegisterParam)
 	// 参数检查
 	if err := c.ShouldBindJSON(&registerParam); err != nil {
@@ -128,4 +129,15 @@ func UpdateProfile(c *gin.Context) {
 		response.Fail(c, nil, err.Error())
 	}
 	response.Success(c, nil, "更新成功")
+}
+
+func GetUserList(c *gin.Context) {
+	userList := dao.GetUserList()
+	var usersDto []dto.UserDto
+	for _, user := range userList {
+		var userDto dto.UserDto
+		_ = util.CopyFields(&userDto, user)
+		usersDto = append(usersDto, userDto)
+	}
+	response.Success(c, gin.H{"List": usersDto}, "查询成功")
 }

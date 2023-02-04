@@ -100,5 +100,10 @@ func UpdateUser(userId uint, userProfileParam *param.UserProfileUpdateParam) err
 		return errors.New("系统错误")
 	}
 	return nil
+}
 
+func GetUserList() []model.User {
+	var userList []model.User
+	util.Datebase.Model(&model.User{}).Find(&userList)
+	return userList
 }
