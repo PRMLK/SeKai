@@ -58,3 +58,9 @@ func DelPost(id uint) error {
 	}
 	return nil
 }
+
+func GetPostList() []model.Post {
+	var postList []model.Post
+	util.Datebase.Model(&model.Post{}).Find(&postList)
+	return postList
+}

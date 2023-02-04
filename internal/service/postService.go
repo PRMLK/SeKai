@@ -10,7 +10,7 @@ import (
 	"strconv"
 )
 
-func NewPostService(c *gin.Context) {
+func NewPost(c *gin.Context) {
 	newPostParam := new(param.PostParam)
 	// 参数检查
 	if err := c.ShouldBindJSON(&newPostParam); err != nil {
@@ -28,7 +28,7 @@ func NewPostService(c *gin.Context) {
 	}
 }
 
-func ShowPostService(c *gin.Context) {
+func ShowPost(c *gin.Context) {
 	postIdString, _ := c.Params.Get("id")
 
 	postIdInt, err := strconv.ParseInt(postIdString, 10, 64)
@@ -44,7 +44,7 @@ func ShowPostService(c *gin.Context) {
 	}
 }
 
-func EditPostService(c *gin.Context) {
+func EditPost(c *gin.Context) {
 	postIdString, _ := c.Params.Get("id")
 	postParam := new(param.PostParam)
 
@@ -74,7 +74,7 @@ func EditPostService(c *gin.Context) {
 	}
 }
 
-func DelPostService(c *gin.Context) {
+func DelPost(c *gin.Context) {
 	postIdString, _ := c.Params.Get("id")
 
 	// 参数检查
@@ -96,4 +96,9 @@ func DelPostService(c *gin.Context) {
 	} else {
 		response.Success(c, nil, "更新成功")
 	}
+}
+
+func GetPostList(c *gin.Context) {
+	postList := dao.GetPostList()
+	response.Success(c, gin.H{"List": postList}, "查询成功")
 }
